@@ -1,0 +1,340 @@
+---
+FieldType: Text
+FieldName: char_name
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: class_level
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: background
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: player_name
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: race
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: alignment
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: x_p
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: initiative
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: speed
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: a_c
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: s_str
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: s_dex
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: s_con
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: s_int
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: s_wis
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: s_cha
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: m_str
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: m_dex
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: m_con
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: m_int
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: m_wis
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: m_cha
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: prof
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: insp
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: sv_str
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: sv_dex
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: sv_con
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: sv_int
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: sv_wis
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: sv_cha
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: acrobatics
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: animal_handling
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: arcana
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: athletics
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: deception
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: history
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: insight
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: intimidation
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: investigation
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: medicine
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: nature
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: perception
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: performance
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: persuasion
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: religion
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: sleight_of_hand
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: stealth
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: survival
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: pass_p
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: hp_max
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: hp_curr
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: hp_temp
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: hd_total
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: hd
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: weapon1
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: weapon2
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: weapon3
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: dmg1
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: dmg2
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: dmg3
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: atk_b1
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: atk_b2
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: atk_b3
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: cp
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: sp
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: ep
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: gp
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: pp
+FieldFlags: 0
+FieldJustification: Center
