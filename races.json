@@ -1,0 +1,350 @@
+{
+  "Dragonborn": {
+    "mods": {
+      "str": 2,
+      "cha": 1
+    },
+    "size": "Medium",
+    "age": [
+      15,
+      80
+    ],
+    "speed": 30,
+    "languages": [
+      "Common",
+      "Draconic"
+    ],
+    "darkvision": "no",
+    "features": {
+      "Breath Weapon": 0,
+      "Damage Resistance": "You have resistance to the damage type associated with your draconic ancestry."
+    }
+  },
+  "Hill Dwarf": {
+    "mods": {
+      "con": 2,
+      "wis": 1
+    },
+    "size": "Medium",
+    "age": [
+      50,
+      350
+    ],
+    "speed": 25,
+    "languages": [
+      "Common",
+      "Dwarvish"
+    ],
+    "darkvision": "yes",
+    "features": {
+      "Dwarven Toughness": "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level."
+    }
+  },
+  "Mountain Dwarf": {
+    "mods": {
+      "str": 2,
+      "con": 2
+    },
+    "size": "Medium",
+    "age": [
+      50,
+      350
+    ],
+    "speed": 25,
+    "languages": [
+      "Common",
+      "Dwarvish"
+    ],
+    "darkvision": "yes",
+    "prof": [
+      "light armor",
+      "medium armor"
+    ]
+  },
+  "High Elf": {
+    "mods": {
+      "dex": 2,
+      "int": 1
+    },
+    "size": "Medium",
+    "age": [
+      100,
+      750
+    ],
+    "speed": 30,
+    "languages": [
+      "Common",
+      "Elvish"
+    ],
+    "extra languages": 1,
+    "darkvision": "yes",
+    "skills": [
+      "Perception"
+    ],
+    "prof": [
+      "longsword",
+      "shortsword",
+      "shortbow",
+      "longbow"
+    ],
+    "features": {
+      "Fey Ancestry": "You have advantage on saving throws against being charmed, and magic can’t put you to sleep.",
+      "Trance": "Elves don’t need to sleep. Instead, they meditate deeply, remaining semiconscious, for 4 hours a day. After resting in this way, you gain the same benefit that a human does from 8 hours of sleep.",
+      "Cantrip": "You know one cantrip of your choice from the wizard spell list. Intelligence is your spellcasting ability for it."
+    }
+  },
+
+  "Wood Elf": {
+    "mods": {
+      "dex": 2,
+      "wis": 1
+    },
+    "size": "Medium",
+    "age": [
+      100,
+      750
+    ],
+    "speed": 35,
+    "languages": [
+      "Common",
+      "Elvish"
+    ],
+    "darkvision": "yes",
+    "skills": [
+      "Perception"
+    ],
+    "prof": [
+      "longsword",
+      "shortsword",
+      "shortbow",
+      "longbow"
+    ],
+    "features": {
+      "Fey Ancestry": "You have advantage on saving throws against being charmed, and magic can’t put you to sleep.",
+      "Trance": "Elves don’t need to sleep. Instead, they meditate deeply, remaining semiconscious, for 4 hours a day. After resting in this way, you gain the same benefit that a human does from 8 hours of sleep.",
+      "Mask of the Wild": "You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena."
+    }
+  },
+  "Dark Elf (Drow)": {
+    "mods": {
+      "dex": 2,
+      "cha": 1
+    },
+    "size": "Medium",
+    "age": [
+      100,
+      750
+    ],
+    "speed": 35,
+    "languages": [
+      "Common",
+      "Elvish"
+    ],
+    "darkvision": "yes",
+    "skills": [
+      "Perception"
+    ],
+    "prof": [
+      "rapier",
+      "shortsword",
+      "hand crossbow"
+    ],
+    "features": {
+      "Fey Ancestry": "You have advantage on saving throws against being charmed, and magic can’t put you to sleep.",
+      "Trance": "Elves don’t need to sleep. Instead, they meditate deeply, remaining semiconscious, for 4 hours a day. After resting in this way, you gain the same benefit that a human does from 8 hours of sleep.",
+      "Superior Darkvision": "Your darkvision has a range of 120 feet.",
+      "Drow Magic": "You know the Dancing Lights cantrip. When you reach 3rd level, you can cast Faerie Fire once, and it recharges after a long rest. When you reach 5th level, you can cast Darkness once, and it recharges after a long rest. Charisma is your spellcasting ability for these spells.",
+      "Sunlight Sensitivity": "While in sunlight, you have disadvantage on Attack rolls, as well as on Perception checks that rely on sight."
+    }
+  },
+
+  "Forest Gnome": {
+    "mods": {
+      "dex": 1,
+      "int": 2
+    },
+    "age": [
+      40,
+      500
+    ],
+    "size": "Small",
+    "speed": 25,
+    "languages": [
+      "Common",
+      "Gnomish"
+    ],
+    "darkvision": "yes",
+    "features": {
+      "Gnome Cunning": "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.",
+      "Natural Illusionist": "You know the Minor Illusion cantrip. Intelligence is your spellcasting modifier for it.",
+      "Speak with Small Beasts": "Through sound and gestures, you may communicate simple ideas with Small or smaller beasts."
+    }
+  },
+
+  "Rock Gnome": {
+    "mods": {
+      "int": 2,
+      "con": 1
+    },
+    "age": [
+      40,
+      500
+    ],
+    "size": "Small",
+    "speed": 25,
+    "languages": [
+      "Common",
+      "Gnomish"
+    ],
+    "darkvision": "yes",
+    "features": {
+      "Gnome Cunning": "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.",
+      "Artificer's Lore": "Whenever you make an Intelligence (History) check related to magical, alchemical, or technological items, you can add twice your proficiency bonus instead of any other proficiency bonus that may apply.",
+      "Tinker": "You have proficiency with artisan tools (tinker's tools). Using those tools, you can spend 1 hour and 10 gp worth of materials to construct a Tiny clockwork device (AC 5, 1 hp). The device ceases to function after 24 hours (unless you spend 1 hour repairing it to keep the device functioning), or when you use your action to dismantle it; at that time, you can reclaim the materials used to create it. You can have up to three such devices active at a time. Choose one of the following options:",
+      "Clockwork Toy": "This toy is a clockwork animal, monster, or person, such as a frog, mouse, bird, dragon, or soldier. When placed on the ground, the toy moves 5 feet across the ground on each of your turns in a random direction. It makes noises as appropriate to the creature it represents.",
+      "Fire Starter": "The device produces a miniature flame, which you can use to light a candle, torch, or campfire. Using the device requires your action.",
+      "Music Box": "When opened, this music box plays a single song at a moderate volume. The box stops playing when it reaches the song's end or when it is closed."
+    }
+  },
+
+  "Half-Elf": {
+    "mods": {
+      "cha": 2,
+      "other": 2
+    },
+    "age": [
+      20,
+      180
+    ],
+    "size": "Medium",
+    "speed": 30,
+    "languages": [
+      "Common",
+      "Elvish"
+    ],
+    "extra languages": 1,
+    "darkvision": "yes",
+
+    "skills": 2,
+    "features": {
+      "Fey Ancestry": "You have advantage on saving throws against being charmed, and magic can’t put you to sleep."
+    }
+  },
+
+  "Lightfoot Halfling": {
+    "mods": {
+      "dex": 2,
+      "cha": 1
+    },
+    "age": [
+      20,
+      250
+    ],
+    "size": "Small",
+    "speed": 25,
+    "languages": [
+      "Common",
+      "Halfling"
+    ],
+    "darkvision": "yes",
+    "features": {
+      "Lucky": "When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die. You must use the new result, even if it is a 1.",
+      "Brave": "You have advantage on saving throws against being frightened.",
+      "Nimble": "You can move through the space of any creature that is of a size larger than yours.",
+      "Naturally Stealthy": "You can attempt to hide even when you are only obscured by a creature that is at least one size larger than you."
+    }
+  },
+
+  "Stout Halfling": {
+    "mods": {
+      "dex": 2,
+      "con": 1
+    },
+    "age": [
+      20,
+      250
+    ],
+    "size": "Small",
+    "speed": 25,
+    "languages": [
+      "Common",
+      "Halfling"
+    ],
+    "darkvision": "yes",
+    "features": {
+      "Lucky": "When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die. You must use the new result, even if it is a 1.",
+      "Brave": "You have advantage on saving throws against being frightened.",
+      "Nimble": "You can move through the space of any creature that is of a size larger than yours.",
+      "Stout Resilience": "You have advantage on saving throws against poison, and you have resistance to poison damage."
+    }
+  },
+
+  "Half-Orc": {
+    "mods": {
+      "str": 2,
+      "con": 1
+    },
+    "age": [
+      14,
+      75
+    ],
+    "size": "Medium",
+    "speed": 30,
+    "languages": [
+      "Common",
+      "Orc"
+    ],
+    "darkvision": "yes",
+    "skills": [
+      "Intimidation"
+    ],
+    "features": {
+      "Relentless Endurance": "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can't use this feature again until you finish a long rest.",
+      "Savage Attacks": "When you score a critical hit with a melee weapon attack, you can roll one of the weapon's damage dice one additional time and add it to the extra damage of the critical hit."
+    }
+  },
+
+  "Human": {
+    "mods": {
+      "str": 1,
+      "dex": 1,
+      "con": 1,
+      "int": 1,
+      "wis": 1,
+      "cha": 1
+    },
+    "age": [
+      18,
+      100
+    ],
+    "size": "Medium",
+    "speed": 30,
+    "languages": [
+      "Common"
+    ],
+    "extra languages": 1,
+    "darkvision": "no"
+  },
+
+  "Tiefling": {
+    "mods": {
+      "int": 1,
+      "cha": 2
+    },
+    "age": [
+      18,
+      120
+    ],
+    "size": "Medium",
+    "speed": 30,
+    "languages": [
+      "Common",
+      "Infernal"
+    ],
+    "darkvision": "yes",
+    "features": {
+      "Hellish Resistance": "You have resistance to fire damage.",
+      "Infernal Legacy": "You know the Thaumaturgy cantrip. Once you reach 3rd level, you can cast the Hellish Rebuke spell once as a 2nd-level spell. Once you reach 5th level, you can also cast the Darkness spell once. You must finish a long rest to cast these spells again with this trait. Charisma is your spellcasting ability for these spells."
+    }
+  }
+}
