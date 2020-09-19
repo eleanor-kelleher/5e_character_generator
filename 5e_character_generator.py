@@ -79,6 +79,28 @@ def get_modifier(stat, proficiency=0):
     return str(mod)
 
 
+def random_background():
+    bg_file = open('backgrounds.json')
+    bg_dict = json.loads(bg_file.read())
+    background = random.choice(list(bg_dict))
+    bg_attributes = bg_dict[background]
+
+    char_data['Background'] = background
+    equipment.extend(bg_attributes['equipment'])
+    char_data['GP'] = bg_attributes['gp']
+
+    if 'languages' in bg_attributes:
+        number = bg_attributes['languages']
+        while number > 0:
+            current_lang = random.choice(LANGUAGES)
+            if current_lang not in languages:
+                languages.append(current_lang)
+                number = number - 1
+
+    bg_file.close()
+
+
+
 def write_fillable_pdf(input_pdf_path, output_pdf_path, data_dict):
     template_pdf = pdfrw.PdfReader(input_pdf_path)
     template_pdf.Root.AcroForm.update(pdfrw.PdfDict(NeedAppearances=pdfrw.PdfObject('true')))
@@ -107,25 +129,7 @@ if __name__ == '__main__':
     equipment = []
     features = []
 
-    # Background
-    bg_file = open('backgrounds.json')
-    bg_dict = json.loads(bg_file.read())
-    background = random.choice(list(bg_dict))
-    bg_attributes = bg_dict[background]
-    print(bg_attributes)
-    char_data['GP'] = bg_attributes['gp']
-
-    if 'languages' in bg_attributes:
-        number = bg_attributes['languages']
-        while number > 0:
-            current_lang = random.choice(LANGUAGES)
-            if current_lang not in languages:
-                languages.append(current_lang)
-                number = number - 1
-
-    equipment.extend(bg_attributes['equipment'])
-    char_data['Background'] = background
-    bg_file.close()
+    random_background()
 
     # add racial modifiers
 
