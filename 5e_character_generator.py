@@ -16,11 +16,13 @@ ANNOT_RECT_KEY = '/Rect'
 SUBTYPE_KEY = '/Subtype'
 WIDGET_SUBTYPE_KEY = '/Widget'
 
-SKILLS_STR = ["Athletics"]
-SKILLS_DEX = ["Acrobatics", "SleightofHand", "Stealth"]
-SKILLS_INT = ["Arcana", "History", "Investigation", "Nature", "Religion"]
-SKILLS_WIS = ["Animal", "Insight", "Medicine", "Perception", "Survival"]
-SKILLS_CHA = ["Deception", "Intimidation", "Performance", "Persuasion"]
+SKILLS_STR = ["ST Strength", "Athletics"]
+SKILLS_DEX = ["ST Dexterity", "Acrobatics", "SleightofHand", "Stealth"]
+SKILLS_CON = ["ST Constitution"]
+SKILLS_INT = ["ST Intelligence", "Arcana", "History", "Investigation", "Nature", "Religion"]
+SKILLS_WIS = ["ST Wisdom", "Animal", "Insight", "Medicine", "Perception", "Survival"]
+SKILLS_CHA = ["ST Charisma", "Deception", "Intimidation", "Performance", "Persuasion"]
+SKILL_LIST = [SKILLS_STR, SKILLS_DEX, [], SKILLS_INT, SKILLS_WIS, SKILLS_CHA]
 LANGUAGES = ["Common", "Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling",
              "Orc", "Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal",
              "Primordial", "Sylvan", "Undercommon"]
@@ -100,7 +102,6 @@ def random_background():
     bg_file.close()
 
 
-
 def write_fillable_pdf(input_pdf_path, output_pdf_path, data_dict):
     template_pdf = pdfrw.PdfReader(input_pdf_path)
     template_pdf.Root.AcroForm.update(pdfrw.PdfDict(NeedAppearances=pdfrw.PdfObject('true')))
@@ -122,7 +123,29 @@ if __name__ == '__main__':
     char_data['CharacterName'] = names.get_first_name()
     char_data['ProfBonus'] = '+' + str(PROF)
     char_data['Alignment'] = random.choice(ALIGNMENT)
+    char_data['XP'] = 0
+
     stat_dict = stat_gen()
+
+    modifiers = []
+    mod_name = ''
+    for stat_name, stat_val in stat_dict.items():
+        if stat_name == 'CHA':
+            mod_name = 'CHamod'
+        else:
+            mod_name = stat_name + 'mod'
+        # does not work for DEXmod, unsure why
+        mod_val = get_modifier(stat_val)
+        char_data[mod_name] = mod_val
+        modifiers.append(mod_val)
+        if mod_name == 'DEXmod':
+            char_data['Initiative'] = char_data[mod_name]
+
+
+    for i, mod in enumerate(modifiers):
+        for j, skill_name in enumerate(SKILL_LIST[i]):
+            char_data[skill_name] = modifiers[i]
+            print(skill_name, char_data[skill_name])
 
     languages = []
     proficiencies = []
@@ -136,16 +159,6 @@ if __name__ == '__main__':
     char_data.update(stat_dict)
 
     # select_class(stat_dict)
-
-    for stat_name, stat_val in stat_dict.items():
-        if stat_name == 'CHA':
-            mod_name = 'CHamod'
-        else:
-            mod_name = stat_name + 'mod'
-        # does not work for DEXmod, unsure why
-        char_data[mod_name] = get_modifier(stat_val)
-        if mod_name == 'DEXmod':
-            char_data['Initiative'] = char_data[mod_name]
 
     # fill out proficiencies & languages
     lang_list = ', '.join(languages)
