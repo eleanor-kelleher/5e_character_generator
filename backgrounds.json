@@ -1,0 +1,96 @@
+{
+  "Acolyte": {
+    "skills": ["Insight", "Religion"],
+    "languages": 2,
+    "equipment": ["A holy symbol, a prayer book, incense (5), vestments, common clothes"],
+    "gp": 15
+  },
+
+  "Charlatan": {
+    "skills": ["Deception", "SleightofHand"],
+    "prof": ["disguise kit", "forgery kit"],
+    "equipment": ["fine clothes", "disguise kit", "tools of the con of your choice"],
+    "gp": 15
+  },
+
+  "Criminal": {
+    "skills": ["Deception", "Stealth"],
+    "prof": ["gaming set", "thieves, tools"],
+    "equipment": ["crowbar", "dark common clothes including a hood"],
+    "gp": 15
+  },
+
+  "Entertainer": {
+    "skills": ["Acrobatics", "Performance"],
+    "prof": ["musical instrument (1)", "disguise kit"],
+    "equipment": ["musical instrument (1)", "The favor of an admirer", "costume"],
+    "gp": 15
+  },
+
+  "Folk Hero": {
+    "skills": ["Animal", "Survival"],
+    "prof": ["artisan's tools (1)", "vehicles (land)"],
+    "equipment": ["A set of artisan tools (1)", "shovel", "iron pot", "common clothes"],
+    "gp": 10
+  },
+
+  "Guild Artisan": {
+    "skills": ["Insight", "Persuasion"],
+    "languages": 1,
+    "prof": ["artisan's tools (1)"],
+    "equipment": ["artisan's tools (1)", "a letter of introduction from your guild", "traveler's clothes"],
+    "gp": 15
+  },
+
+  "Hermit": {
+    "skills": ["Medicine", "Religion"],
+    "languages": 1,
+    "prof": ["herbalism kit"],
+    "equipment": ["winter blanket", "common clothes", "herbalism kit", "scroll case of notes from your studies or prayers"],
+    "gp": 5
+  },
+
+  "Noble": {
+    "skills": ["History", "Persuasion"],
+    "languages": 1,
+    "prof": ["gaming set (1)"],
+    "equipment": ["fine clothes", "signet ring", "scroll of pedigree"],
+    "gp": 25
+  },
+
+  "Outlander": {
+    "skills": ["Survival", "Athletics"],
+    "languages": 1,
+    "prof": ["musical instrument (1)"],
+    "equipment": ["staff", "trophy from an animal you killed", "hunting trap", "traveler's clothes"],
+    "gp": 10
+  },
+
+  "Sage": {
+    "skills": ["Arcana", "History"],
+    "languages": 2,
+    "equipment": ["quill", "small knife", "bottle of black ink", "letter from a dead colleague posing a question which you have not yet been able to answer", "common clothes"],
+    "gp": 10
+  },
+
+  "Sailor": {
+    "skills": ["Athletics", "Perception"],
+    "prof": ["navigator's tools", "vehicles (water)"],
+    "equipment": ["belaying pin (club)", "50' of silk rope", "lucky charm", "common clothes"],
+    "gp": 10
+  },
+
+  "Soldier": {
+    "skills": ["Athletics", "Intimidation"],
+    "prof": ["vehicles (land)", "gaming set (1)"],
+    "equipment": ["bone dice or deck of cards", "insignia of rank", "common clothes", "trophy taken from a fallen enemy"],
+    "gp": 10
+  },
+
+  "Urchin": {
+    "skills": ["SleightofHand", "Stealth"],
+    "prof": ["disguise kit", "thieves' tools"],
+    "equipment": ["common clothes", "token to remember your parents by", "pet mouse", "map of the city you grew up in", "small knife"],
+    "gp": 10
+  }
+}
