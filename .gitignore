@@ -110,7 +110,6 @@ ENV/
 env.bak/
 venv.bak/
 .idea
-data_fields.txt
 
 # Spyder project settings
 .spyderproject
@@ -129,3 +128,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# other
+data_fields.txt
