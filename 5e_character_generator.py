@@ -74,16 +74,6 @@ def generate_stats():
             'CHA': six_stats[5]}
 
 
-def get_modifier(stat, proficiency=0):
-    return math.floor((stat - 10) / 2) + proficiency
-
-
-def plus_or_minus(mod):
-    if mod >= 0:
-        return '+' + str(mod)
-    return str(mod)
-
-
 def add_racial_mods(stats, mods):
     for stat_name in stats:
         if stat_name in mods:
@@ -122,7 +112,7 @@ def random_race():
     languages.extend(race_attributes['languages'])
     if 'extra_languages' in race_attributes:
         languages.extend(random_languages(race_attributes['extra_languages'], languages))
-    racial_mods = race_attributes['mods']
+    racial_modifiers = race_attributes['mods']
     if race_attributes['darkvision'] == 'yes':
         features.append('Darkvision')
     if "Breath Weapon" in race_attributes:
@@ -130,11 +120,10 @@ def random_race():
         pass
     if 'features' in race_attributes:
         for feature, description in race_attributes['features'].items():
-            print(feature, description)
             string = feature + ". " + description
             features.append(string)
     races_file.close()
-    return racial_mods
+    return racial_modifiers
 
 
 def random_background():
@@ -155,7 +144,44 @@ def random_background():
     if 'languages' in bg_attributes:
         count = bg_attributes['languages']
         languages.extend(random_languages(count, languages))
+
+    skills.extend(bg_attributes['skills'])
     bg_file.close()
+
+
+def get_modifier(stat, proficiency=0):
+    return math.floor((stat - 10) / 2) + proficiency
+
+
+def plus_or_minus(mod):
+    if mod >= 0:
+        return '+' + str(mod)
+    return str(mod)
+
+
+def get_ability_modifiers():
+    ability_modifiers = []
+    mod_name = ''
+    for stat_name, stat_val in stat_dict.items():
+        if stat_name == 'CHA':
+            mod_name = 'CHamod'
+        else:
+            mod_name = stat_name + 'mod'
+        mod_val = get_modifier(stat_val)
+        char_data[mod_name] = plus_or_minus(mod_val)
+        ability_modifiers.append(mod_val)
+        if mod_name == 'DEXmod':
+            char_data['Initiative'] = char_data[mod_name]
+    return ability_modifiers
+
+
+def get_skill_modifiers(prof_skills, ability_modifiers, proficiency):
+    for i, mod in enumerate(ability_modifiers):
+        for j, skill_name in enumerate(SKILL_LIST[i]):
+            if skill_name in skills:
+                char_data[skill_name] = plus_or_minus(ability_modifiers[i] + proficiency)
+            else:
+                char_data[skill_name] = plus_or_minus(ability_modifiers[i])
 
 
 def choose_item_option(item_list):
@@ -187,6 +213,7 @@ if __name__ == '__main__':
     char_data = dict()
     languages = []
     proficiencies = []
+    skills = []
     equipment = []
     features = []
 
@@ -200,27 +227,9 @@ if __name__ == '__main__':
     stat_dict = generate_stats()
     add_racial_mods(stat_dict, racial_mods)
 
-    modifiers = []
-    mod_name = ''
-    for stat_name, stat_val in stat_dict.items():
-        if stat_name == 'CHA':
-            mod_name = 'CHamod'
-        else:
-            mod_name = stat_name + 'mod'
-        mod_val = get_modifier(stat_val)
-        char_data[mod_name] = plus_or_minus(mod_val)
-        modifiers.append(mod_val)
-        if mod_name == 'DEXmod':
-            char_data['Initiative'] = char_data[mod_name]
-
-    for i, mod in enumerate(modifiers):
-        for j, skill_name in enumerate(SKILL_LIST[i]):
-            char_data[skill_name] = modifiers[i]
-            # print(skill_name, char_data[skill_name])
-
     random_background()
 
-    # class
+    # select_class(stat_dict)
     class_file = open('phbdata/classes.json')
     class_dict = json.loads(class_file.read())
     player_class = random.choice(list(class_dict))
@@ -229,28 +238,27 @@ if __name__ == '__main__':
     char_data['ClassLevel'] = player_class + ' 1'
     char_data['HD'] = 'd' + str(class_attributes['hd'])
     char_data['HDTotal'] = '1'
-    hitpoints = class_attributes['hd'] + modifiers[2]
-    char_data['HPMax'] = hitpoints
-    char_data['HPCurrent'] = hitpoints
     char_data['HPTemp'] = '0'
+
+    skills.extend(random.sample(class_attributes['skills'], class_attributes['skill number']))
+    skills.extend(class_attributes['saves'])
+    print(skills)
+
+    ability_modifiers = get_ability_modifiers()
+    get_skill_modifiers(skills, ability_modifiers, PROF)
+    hit_points = class_attributes['hd'] + ability_modifiers[2]
+    char_data['HPMax'] = hit_points
+    char_data['HPCurrent'] = hit_points
 
     proficiencies.extend(choose_item_option(class_attributes['prof']))
     equipment.extend(choose_item_option(class_attributes['equipment']))
 
-    # random_class()
-
-    # add racial modifiers
-
     char_data.update(stat_dict)
-
-    # select_class(stat_dict)
 
     # fill out proficiencies & languages
     char_data['ProficienciesLang'] = ', '.join(languages) + '\n\n' + ', '.join(proficiencies)
     char_data['Equipment'] = ', '.join(equipment)
     char_data['Features and Traits'] = '\r\n'.join(features)
 
-    # for x, y in char_data.items():
-    #     print(x, y)
 
     write_fillable_pdf(BLANK_CHAR_SHEET, OUTPUT_CHAR_SHEET, char_data)

@@ -9,8 +9,8 @@
       "martial weapons"
     ],
     "saves": [
-      "STR",
-      "CON"
+      "ST Strength",
+      "ST Constitution"
     ],
     "skill number": 2,
     "skills": [
@@ -46,8 +46,8 @@
       "musical instruments (3)"
     ],
     "saves": [
-      "DEX",
-      "CHA"
+      "ST Dexterity",
+      "ST Charisma"
     ],
     "skill number": 3,
     "skills": "any",
@@ -74,8 +74,8 @@
       "simple weapons"
     ],
     "saves": [
-      "WIS",
-      "CHA"
+      "ST Wisdom",
+      "ST Charisma"
     ],
     "skill number": 2,
     "skills": [
@@ -118,8 +118,8 @@
       "herbalism kit"
     ],
     "saves": [
-      "INT",
-      "WIS"
+      "ST Intelligence",
+      "ST Wisdom"
     ],
     "languages": "druidic",
     "skill number": 2,
@@ -155,8 +155,8 @@
       "martial weapons"
     ],
     "saves": [
-      "STR",
-      "CON"
+      "ST Strength",
+      "ST Constitution"
     ],
     "skill number": 2,
     "skills": [
@@ -196,8 +196,8 @@
       "artisan tools (1)/musical instrument (1)"
     ],
     "saves": [
-      "STR",
-      "DEX"
+      "ST Strength",
+      "ST Dexterity"
     ],
     "skill number": 2,
     "skills": [
@@ -243,8 +243,8 @@
       "martial weapons"
     ],
     "saves": [
-      "STR",
-      "DEX"
+      "ST Strength",
+      "ST Dexterity"
     ],
     "skill number": 3,
     "skills": [
@@ -272,7 +272,7 @@
   "Rogue": {
     "hd": 8,
     "prof": ["light armor", "simple weapons", "hand crossbows", "longswords", "rapiers", "shortswords", "thieves' tools"],
-    "saves": ["DEX", "INT"],
+    "saves": ["DT Dexterity", "ST Intelligence"],
     "languages": "Thieves' Cant",
     "skill number": 4,
     "skills": ["Acrobatics", "Athletics", "Deception", "Insight", "Intimidation", "Investigation", "Perception", "Performance", "Persuasion", "SleightofHand", "Stealth"],
@@ -293,8 +293,8 @@
       "light crossbows"
     ],
     "saves": [
-      "CON",
-      "CHA"
+      "ST Constitution",
+      "ST Charisma"
     ],
     "skill number": 2,
     "skills": [
@@ -344,11 +344,32 @@
 
   "Warlock": {
     "hd": 8,
-    "prof": ["light armor", "simple weapons"],
-    "saves": ["WIS", "CHA"],
+    "prof": [
+      "light armor",
+      "simple weapons"
+    ],
+    "saves": [
+      "ST Wisdom",
+      "ST Charisma"
+    ],
     "skill number": 2,
-    "skills": ["Arcana", "Deception", "History", "Intimidation", "Investigation", "Nature", "Religion"],
-    "equipment": ["light crossbow, bolts (20)/simple", "component pouch/arcane focus", "scholar's pack/dungeoneer's pack", "leather armor", "simple", "dagger (2)"],
+    "skills": [
+      "Arcana",
+      "Deception",
+      "History",
+      "Intimidation",
+      "Investigation",
+      "Nature",
+      "Religion"
+    ],
+    "equipment": [
+      "light crossbow, bolts (20)/simple",
+      "component pouch/arcane focus",
+      "scholar's pack/dungeoneer's pack",
+      "leather armor",
+      "simple",
+      "dagger (2)"
+    ],
     "subclass": {
       "Fey Presence": "As an action, you can cause each creature in a 10-foot cube originating from you to make a Wisdom saving throw against your warlock spell save DC. The creatures that fail their saving throws are all charmed or frightened by you (your choice) until the end of your next turn. Once you use this feature, you can't use it again until you finish a short or long rest.",
       "Dark One's Blessing": "When you reduce a hostile creature to 0 hit points, you gain temporary hit points equal to your Charisma modifier + your warlock level.",
@@ -362,11 +383,32 @@
 
   "Wizard": {
     "hd": 6,
-    "prof": ["daggers", "darts", "slings", "quarterstaffs", "light crossbows"],
-    "saves": ["INT", "WIS"],
+    "prof": [
+      "daggers",
+      "darts",
+      "slings",
+      "quarterstaffs",
+      "light crossbows"
+    ],
+    "saves": [
+      "ST Intelligence",
+      "ST Wisdom"
+    ],
     "skill number": 2,
-    "skills": ["Arcana", "History", "Insight", "Investigation", "Medicine", "Religion"],
-    "equipment": ["quarterstaff/dagger", "component pouch/arcane focus", "scholar's pack/explorer's pack", "spellbook"],
+    "skills": [
+      "Arcana",
+      "History",
+      "Insight",
+      "Investigation",
+      "Medicine",
+      "Religion"
+    ],
+    "equipment": [
+      "quarterstaff/dagger",
+      "component pouch/arcane focus",
+      "scholar's pack/explorer's pack",
+      "spellbook"
+    ],
     "features": {
       "Cantrips": "You know three cantrips of your choice from the wizard spell list.",
       "Spellbook": "You have a spellbook containing six 1st-level wizard spells of your choice. Each time you gain a wizard level, you can add two wizard spells of your choice to your spellbook",
