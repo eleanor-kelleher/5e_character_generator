@@ -1,0 +1,256 @@
+{
+  "artisan": [
+    "Alchemist’s supplies",
+    "brewer’s supplies",
+    "calligrapher's supplies",
+    "carpenter’s tools",
+    "cartographer’s tools",
+    "cobbler’s tools",
+    "cook’s utensils",
+    "glassblower’s tools",
+    "jeweler’s tools",
+    "leatherworker’s tools",
+    "mason’s tools",
+    "painter’s supplies",
+    "ptter’s tools",
+    "smith’s tools",
+    "tinker’s tools",
+    "weaver’s tools",
+    "woodcarver’s tools"
+  ],
+  "instruments": [
+    "bagpipes",
+    "drum",
+    "dulcimer",
+    "flute",
+    "lute",
+    "lyre",
+    "horn",
+    "pan flute",
+    "shawm",
+    "viol"
+  ],
+  "armor": {
+    "padded": "11 + DEX",
+    "leather": "11 _ DEX",
+    "studded leather:": "12 + DEX",
+    "hide": "13 + DEX (2)",
+    "chain shirt": "13 + DEX (2)",
+    "scale mail": "14 + DEX (2)",
+    "breastplate": "14 + DEX (2)",
+    "half plate": "15 + DEX (2)",
+    "ring mail": "14",
+    "chain mail": "16",
+    "splint": "17",
+    "plate": "18",
+    "shield": "2"
+  },
+  "weapon": {
+    "simple": {
+      "club": {
+        "dmg": "1d4",
+        "melee": "yes",
+        "type": "bludgeoning"
+      },
+      "dagger": {
+        "dmg": "1d4",
+        "melee": "yes",
+        "type": "piercing",
+        "finesse": "yes",
+        "thrown": "20/60"
+      },
+      "greatclub": {
+        "dmg": "1d8",
+        "melee": "yes",
+        "type": "bludgeoning"
+      },
+      "handaxe": {
+        "dmg": "1d6",
+        "melee": "yes",
+        "type": "slashing",
+        "thrown": "20/60"
+      },
+      "javelin": {
+        "dmg": "1d6",
+        "melee": "yes",
+        "type": "piercing",
+        "thrown": "30/120"
+      },
+      "light hammer": {
+        "dmg": "1d4",
+        "melee": "yes",
+        "type": "bludgeoning",
+        "thrown": "20/60"
+      },
+      "mace": {
+        "dmg": "1d6",
+        "melee": "yes",
+        "type": "bludgeoning"
+      },
+      "quarterstaff": {
+        "dmg": "1d6",
+        "melee": "yes",
+        "type": "bludgeoning",
+        "versatile": "1d8"
+      },
+      "sickle": {
+        "dmg": "1d4",
+        "melee": "yes",
+        "type": "slashing"
+      },
+      "spear": {
+        "dmg": "1d6",
+        "melee": "yes",
+        "type": "piercing",
+        "thrown": "20/60",
+        "versatile": "1d8"
+      },
+      "light crossbow": {
+        "dmg": "1d8",
+        "type": "piercing",
+        "range": "80/320"
+      },
+      "dart": {
+        "dmg": "1d4",
+        "type": "piercing",
+        "thrown": "20/60"
+      },
+      "shortbow": {
+        "dmg": "1d6",
+        "type": "piercing",
+        "thrown": "80/320"
+      },
+      "sling": {
+        "dmg": "1d4",
+        "type": "bludgeoning",
+        "thrown": "30/120"
+      }
+    },
+
+    "martial": {
+      "battleaxe": {
+        "dmg": "1d8",
+        "melee": "yes",
+        "type": "slashing",
+        "versatile": "1d10"
+      },
+      "flail": {
+        "dmg": "1d8",
+        "melee": "yes",
+        "type": "bludgeoning"
+      },
+      "glaive": {
+        "dmg": "1d10",
+        "melee": "yes",
+        "type": "slashing"
+      },
+      "greataxe": {
+        "dmg": "1d12",
+        "melee": "yes",
+        "type": "slashing"
+      },
+      "greatsword": {
+        "dmg": "2d6",
+        "melee": "yes",
+        "type": "slashing"
+      },
+      "halberd": {
+        "dmg": "1d10",
+        "melee": "yes",
+        "type": "slashing"
+      },
+      "lance": {
+        "dmg": "1d12",
+        "melee": "yes",
+        "type": "piercing"
+      },
+      "longsword": {
+        "dmg": "1d8",
+        "melee": "yes",
+        "type": "slashing",
+        "versatile": "1d10"
+      },
+      "maul": {
+        "dmg": "2d6",
+        "melee": "yes",
+        "type": "bludgeoning"
+      },
+      "morningstar": {
+        "dmg": "1d8",
+        "melee": "yes",
+        "type": "piercing"
+      },
+      "pike": {
+        "dmg": "1d10",
+        "melee": "yes",
+        "type": "piercing"
+      },
+      "rapier": {
+        "dmg": "1d8",
+        "melee": "yes",
+        "finesse": "yes",
+        "type": "piercing"
+      },
+      "scimitar": {
+        "dmg": "1d6",
+        "melee": "yes",
+        "finesse": "yes",
+        "type": "slashing"
+      },
+      "shortsword": {
+        "dmg": "1d10",
+        "melee": "yes",
+        "finesse": "yes",
+        "type": "slashing"
+      },
+      "trident": {
+        "dmg": "1d6",
+        "melee": "yes",
+        "type": "piercing",
+        "thrown": "20/60",
+        "versatile": "1d8"
+      },
+      "war pick": {
+        "dmg": "1d10",
+        "melee": "yes",
+        "type": "bludgeoning"
+      },
+      "warhammer": {
+        "dmg": "1d8",
+        "melee": "yes",
+        "type": "bludgeoning",
+        "versatile": "1d10"
+      },
+      "whip": {
+        "dmg": "1d4",
+        "melee": "yes",
+        "finesse": "yes",
+        "type": "slashing"
+      },
+      "blowgun": {
+        "dmg": "1",
+        "type": "piercing",
+        "range": "25/100"
+      },
+      "hand crossbow": {
+        "dmg": "1d6",
+        "type": "piercing",
+        "range": "30/120"
+      },
+      "heavy crossbow": {
+        "dmg": "1d10",
+        "type": "piercing",
+        "range": "100/400"
+      },
+      "longbow": {
+        "dmg": "1d8",
+        "type": "piercing",
+        "range": "150/600"
+      },
+      "net": {
+        "dmg": "grapple",
+        "type": "DC10 STR"
+      }
+    }
+  }
+}
