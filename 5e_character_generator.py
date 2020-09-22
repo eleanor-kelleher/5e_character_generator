@@ -75,7 +75,10 @@ def generate_stats():
 
 
 def get_modifier(stat, proficiency=0):
-    mod = math.floor((stat - 10) / 2) + proficiency
+    return math.floor((stat - 10) / 2) + proficiency
+
+
+def plus_or_minus(mod):
     if mod >= 0:
         return '+' + str(mod)
     return str(mod)
@@ -108,7 +111,7 @@ def random_languages(count, already_known):
 
 
 def random_race():
-    races_file = open('races.json')
+    races_file = open('phbdata/races.json')
     races_dict = json.loads(races_file.read())
     race = random.choice(list(races_dict))
     print(race)
@@ -135,13 +138,13 @@ def random_race():
 
 
 def random_background():
-    bg_file = open('backgrounds.json')
+    bg_file = open('phbdata/backgrounds.json')
     bg_dict = json.loads(bg_file.read())
     background = random.choice(list(bg_dict))
     bg_attributes = bg_dict[background]
 
     char_data['Background'] = background
-    equipment.extend(bg_attributes['equipment'])
+    equipment.extend(choose_item_option(bg_attributes['equipment']))
     char_data['GP'] = bg_attributes['gp']
 
     char_data['PersonalityTraits'] = random.choice(bg_attributes['trait'])
@@ -153,6 +156,17 @@ def random_background():
         count = bg_attributes['languages']
         languages.extend(random_languages(count, languages))
     bg_file.close()
+
+
+def choose_item_option(item_list):
+    final_list = []
+    for item in item_list:
+        if '/' in item:
+            item_options = item.split('/')
+            final_list.append(random.choice(item_options))
+        else:
+            final_list.append(item)
+    return final_list
 
 
 def write_fillable_pdf(input_pdf_path, output_pdf_path, data_dict):
@@ -171,7 +185,6 @@ def write_fillable_pdf(input_pdf_path, output_pdf_path, data_dict):
 if __name__ == '__main__':
 
     char_data = dict()
-    racial_mods = dict()
     languages = []
     proficiencies = []
     equipment = []
@@ -195,7 +208,7 @@ if __name__ == '__main__':
         else:
             mod_name = stat_name + 'mod'
         mod_val = get_modifier(stat_val)
-        char_data[mod_name] = mod_val
+        char_data[mod_name] = plus_or_minus(mod_val)
         modifiers.append(mod_val)
         if mod_name == 'DEXmod':
             char_data['Initiative'] = char_data[mod_name]
@@ -207,6 +220,25 @@ if __name__ == '__main__':
 
     random_background()
 
+    # class
+    class_file = open('phbdata/classes.json')
+    class_dict = json.loads(class_file.read())
+    player_class = random.choice(list(class_dict))
+    class_attributes = class_dict[player_class]
+
+    char_data['ClassLevel'] = player_class + ' 1'
+    char_data['HD'] = 'd' + str(class_attributes['hd'])
+    char_data['HDTotal'] = '1'
+    hitpoints = class_attributes['hd'] + modifiers[2]
+    char_data['HPMax'] = hitpoints
+    char_data['HPCurrent'] = hitpoints
+    char_data['HPTemp'] = '0'
+
+    proficiencies.extend(choose_item_option(class_attributes['prof']))
+    equipment.extend(choose_item_option(class_attributes['equipment']))
+
+    # random_class()
+
     # add racial modifiers
 
     char_data.update(stat_dict)
@@ -214,8 +246,7 @@ if __name__ == '__main__':
     # select_class(stat_dict)
 
     # fill out proficiencies & languages
-    lang_list = ', '.join(languages)
-    char_data['ProficienciesLang'] = lang_list
+    char_data['ProficienciesLang'] = ', '.join(languages) + '\n\n' + ', '.join(proficiencies)
     char_data['Equipment'] = ', '.join(equipment)
     char_data['Features and Traits'] = '\r\n'.join(features)
 
