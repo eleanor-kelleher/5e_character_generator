@@ -9,19 +9,22 @@ BLANK_CHAR_SHEET = 'Character Sheet - Form Fillable.pdf'
 OUTPUT_CHAR_SHEET = 'Character_Sheet_Output.pdf'
 PROF = 2
 ALIGNMENT = ['LG', 'NG', 'CG', 'LN', 'N', 'CN', 'LE', 'NE', 'CE']
-ANNOT_KEY = '/Annots'
-ANNOT_FIELD_KEY = '/T'
-ANNOT_VAL_KEY = '/V'
+ANNOT_KEY = '/Annots'           # key for all annotations within a page
+ANNOT_FIELD_KEY = '/T'          # Name of field. i.e. given ID of field
+ANNOT_VAL_KEY = '/V'            # Value of field
 ANNOT_RECT_KEY = '/Rect'
+ANNOT_FORM_type = '/FT'         # Form type (e.g. text/button)
+ANNOT_FORM_button = '/Btn'      # ID for buttons, i.e. a checkbox
+ANNOT_FORM_text = '/Tx'         # ID for textbox
 SUBTYPE_KEY = '/Subtype'
 WIDGET_SUBTYPE_KEY = '/Widget'
 
-SKILLS_STR = ["ST Strength", "Athletics"]
-SKILLS_DEX = ["ST Dexterity", "Acrobatics", "SleightofHand", "Stealth"]
-SKILLS_CON = ["ST Constitution"]
-SKILLS_INT = ["ST Intelligence", "Arcana", "History", "Investigation", "Nature", "Religion"]
-SKILLS_WIS = ["ST Wisdom", "Animal", "Insight", "Medicine", "Perception", "Survival"]
-SKILLS_CHA = ["ST Charisma", "Deception", "Intimidation", "Performance", "Persuasion"]
+SKILLS_STR = {"11": "ST Strength", "26": "Athletics"}
+SKILLS_DEX = {"18": "ST Dexterity", "23": "Acrobatics", "38": "SleightofHand", "39": "Stealth"}
+SKILLS_CON = {"19": "ST Constitution"}
+SKILLS_INT = {"20": "ST Intelligence", "25": "Arcana", "28": "History", "31": "Investigation", "33": "Nature", "37": "Religion"}
+SKILLS_WIS = {"21": "ST Wisdom", "24": "Animal", "29": "Insight", "32": "Medicine", "34": "Perception", "40": "Survival"}
+SKILLS_CHA = {"22": "ST Charisma", "27": "Deception", "30": "Intimidation", "35": "Performance", "36": "Persuasion"}
 SKILL_LIST = [SKILLS_STR, SKILLS_DEX, SKILLS_CON, SKILLS_INT, SKILLS_WIS, SKILLS_CHA]
 LANGUAGES = ["Common", "Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling",
              "Orc", "Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal",
@@ -177,11 +180,17 @@ def get_ability_modifiers():
 
 def get_skill_modifiers(prof_skills, ability_modifiers, proficiency):
     for i, mod in enumerate(ability_modifiers):
-        for j, skill_name in enumerate(SKILL_LIST[i]):
+        for button, skill_name in SKILL_LIST[i].items():
             if skill_name in skills:
                 char_data[skill_name] = plus_or_minus(ability_modifiers[i] + proficiency)
+                proficiency_button = 'Check Box ' + button
+                char_data[proficiency_button] = 'Yes'
+                if skill_name == 'Perception':
+                    char_data['Passive'] = 10 + ability_modifiers[i] + proficiency
             else:
                 char_data[skill_name] = plus_or_minus(ability_modifiers[i])
+                if skill_name == 'Perception':
+                    char_data['Passive'] = 10 + ability_modifiers[i]
 
 
 def choose_item_option(item_list):
@@ -197,14 +206,19 @@ def choose_item_option(item_list):
 
 def write_fillable_pdf(input_pdf_path, output_pdf_path, data_dict):
     template_pdf = pdfrw.PdfReader(input_pdf_path)
-    template_pdf.Root.AcroForm.update(pdfrw.PdfDict(NeedAppearances=pdfrw.PdfObject('true')))
+
     annotations = template_pdf.pages[0][ANNOT_KEY]
     for annotation in annotations:
         if annotation[SUBTYPE_KEY] == WIDGET_SUBTYPE_KEY:
             if annotation[ANNOT_FIELD_KEY]:
                 key = annotation[ANNOT_FIELD_KEY][1:-1].strip()
                 if key in data_dict.keys():
-                    annotation.update(pdfrw.PdfDict(V='{}'.format(data_dict[key])))
+                    if annotation[ANNOT_FORM_type] == ANNOT_FORM_button:
+                        # button field i.e. a checkbox
+                        annotation.update(pdfrw.PdfDict(V=pdfrw.PdfName(data_dict[key]), AS=pdfrw.PdfName(data_dict[key])))
+                    elif annotation[ANNOT_FORM_type] == ANNOT_FORM_text:
+                        annotation.update(pdfrw.PdfDict(V='{}'.format(data_dict[key])))
+    template_pdf.Root.AcroForm.update(pdfrw.PdfDict(NeedAppearances=pdfrw.PdfObject('true')))
     pdfrw.PdfWriter().write(output_pdf_path, template_pdf)
 
 
@@ -259,6 +273,5 @@ if __name__ == '__main__':
     char_data['ProficienciesLang'] = ', '.join(languages) + '\n\n' + ', '.join(proficiencies)
     char_data['Equipment'] = ', '.join(equipment)
     char_data['Features and Traits'] = '\r\n'.join(features)
-
 
     write_fillable_pdf(BLANK_CHAR_SHEET, OUTPUT_CHAR_SHEET, char_data)
