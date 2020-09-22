@@ -57,7 +57,7 @@
     "equipment": [
       "fine clothes",
       "disguise kit",
-      "tools of the con of your choice"
+      "tools for a con (ten stoppered bottles filled with colored liquid)/tools for a con (a set of weighted dice)/tools for a con (a deck of marked cards)/tools for a con (a signet ring of an imaginary duke)"
     ],
     "gp": 15,
     "trait": [
@@ -157,7 +157,7 @@
     ],
     "equipment": [
       "musical instrument (1)",
-      "The favor of an admirer",
+      "the favor of an admirer (love letter)/the favor of an admirer (lock of hair)/ the favor of an admirer (trinket)",
       "costume"
     ],
     "gp": 15,
@@ -206,7 +206,7 @@
       "vehicles (land)"
     ],
     "equipment": [
-      "A set of artisan tools (1)",
+      "artisan's tools (1)",
       "shovel",
       "iron pot",
       "common clothes"
@@ -510,7 +510,7 @@
     "equipment": [
       "belaying pin (club)",
       "50' of silk rope",
-      "lucky charm",
+      "lucky charm (a rabbit foot)/lucky charm (a small stone with a hole in the center)",
       "common clothes"
     ],
     "gp": 10,
@@ -559,10 +559,10 @@
       "gaming set (1)"
     ],
     "equipment": [
-      "bone dice or deck of cards",
+      "bone dice/deck of cards",
       "insignia of rank",
       "common clothes",
-      "trophy taken from a fallen enemy"
+      "trophy taken from a fallen enemy (a dagger)/trophy taken from a fallen enemy (broken blade)/trophy taken from a fallen enemy (piece of a banner)"
     ],
     "gp": 10,
     "trait": [

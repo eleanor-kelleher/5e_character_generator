@@ -271,7 +271,7 @@
 
   "Rogue": {
     "hd": 8,
-    "prof": ["l ight armor", "simple weapons", "hand crossbows", "longswords", "rapiers", "shortswords", "thieves' tools"],
+    "prof": ["light armor", "simple weapons", "hand crossbows", "longswords", "rapiers", "shortswords", "thieves' tools"],
     "saves": ["DEX", "INT"],
     "languages": "Thieves' Cant",
     "skill number": 4,

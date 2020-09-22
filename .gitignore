@@ -110,6 +110,7 @@ ENV/
 env.bak/
 venv.bak/
 .idea
+data_fields.txt
 
 # Spyder project settings
 .spyderproject
