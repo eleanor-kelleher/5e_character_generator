@@ -138,23 +138,17 @@ def get_skill_modifiers(skills: list, ability_modifiers: list, proficiency: int)
 
 def select_item_option(items: list) -> list:
     final_list = []
+    weapons = item_dict['weapon']
     for item in items:
         if '/' in item:
             item_options = item.split('/')
-            item_choice = random.choice(item_options)
-            if item_choice == "artisan":
-                final_list.append(random.choice(item_dict['artisan']))
-            elif item_choice == "instrument":
-                final_list.append(random.choice(item_dict['instrument']))
-            else:
-                final_list.append(item)
+            item = random.choice(item_options)
+        if item == "artisan":
+            final_list.append(random.choice(item_dict['artisan']))
+        elif item == "instrument":
+            final_list.append(random.choice(item_dict['instrument']))
         else:
-            if item == "artisan":
-                final_list.append(random.choice(item_dict['artisan']))
-            elif item == "instrument":
-                final_list.append(random.choice(item_dict['instrument']))
-            else:
-                final_list.append(item)
+            final_list.append(item)
     return final_list
 
 
@@ -168,7 +162,7 @@ def select_languages(count: int, already_known: list):
     return lang_list
 
 
-def select_race(races: dict, data: dict, features: list, languages: list) -> dict:
+def select_race(data: dict, features: list, languages: list) -> dict:
     race = random.choice(list(races_dict))
     race_attributes = races_dict[race]
 
@@ -193,7 +187,7 @@ def select_race(races: dict, data: dict, features: list, languages: list) -> dic
     return racial_modifiers
 
 
-def select_background(backgrounds: dict, data: dict, skills: list, equipment: list, languages: list):
+def select_background(data: dict, skills: list, equipment: list, languages: list):
     background = random.choice(list(bg_dict))
     bg_attributes = bg_dict[background]
     char_data['Background'] = background
@@ -278,8 +272,8 @@ if __name__ == '__main__':
     class_dict = load_json(CLASS_PATH)
     item_dict = load_json(ITEM_PATH)
 
-    racial_mods = select_race(races_dict, char_data, features, languages)
-    select_background(bg_dict, char_data, skills, equipment, languages)
+    racial_mods = select_race(char_data, features, languages)
+    select_background(char_data, skills, equipment, languages)
     stats = generate_stats()
     stats = add_racial_mods(stats, racial_mods)
     char_data.update(stats)
