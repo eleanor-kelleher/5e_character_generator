@@ -152,11 +152,11 @@
       "Performance"
     ],
     "prof": [
-      "musical instrument (1)",
+      "instrument",
       "disguise kit"
     ],
     "equipment": [
-      "musical instrument (1)",
+      "instrument",
       "the favor of an admirer (love letter)/the favor of an admirer (lock of hair)/ the favor of an admirer (trinket)",
       "costume"
     ],
@@ -202,11 +202,11 @@
       "Survival"
     ],
     "prof": [
-      "artisan's tools (1)",
+      "artisan",
       "vehicles (land)"
     ],
     "equipment": [
-      "artisan's tools (1)",
+      "artisan",
       "shovel",
       "iron pot",
       "common clothes"
@@ -254,10 +254,10 @@
     ],
     "languages": 1,
     "prof": [
-      "artisan's tools (1)"
+      "artisan"
     ],
     "equipment": [
-      "artisan's tools (1)",
+      "artisan",
       "a letter of introduction from your guild",
       "traveler's clothes"
     ],
@@ -405,7 +405,7 @@
     ],
     "languages": 1,
     "prof": [
-      "musical instrument (1)"
+      "instrument"
     ],
     "equipment": [
       "staff",

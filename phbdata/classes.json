@@ -43,7 +43,7 @@
       "longswords",
       "rapiers",
       "shortswords",
-      "musical instruments (3)"
+      "instrument (3)"
     ],
     "saves": [
       "ST Dexterity",
@@ -193,7 +193,7 @@
     "prof": [
       "simple weapons",
       "shortswords",
-      "artisan tools (1)/musical instrument (1)"
+      "artisan/instrument"
     ],
     "saves": [
       "ST Strength",
