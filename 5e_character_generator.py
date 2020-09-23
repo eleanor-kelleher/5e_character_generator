@@ -146,12 +146,15 @@ def select_item_option(items: list) -> list:
                 final_list.append(random.choice(item_dict['artisan']))
             elif item_choice == "instrument":
                 final_list.append(random.choice(item_dict['instrument']))
+            else:
+                final_list.append(item)
         else:
             if item == "artisan":
-                x = random.choice(item_dict['artisan'])
-                final_list.append(x)
+                final_list.append(random.choice(item_dict['artisan']))
             elif item == "instrument":
                 final_list.append(random.choice(item_dict['instrument']))
+            else:
+                final_list.append(item)
     return final_list
 
 
