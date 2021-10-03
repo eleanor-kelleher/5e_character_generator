@@ -14,8 +14,12 @@
       "Common",
       "Draconic"
     ],
+    "extra languages": 0,
     "darkvision": "no",
     "Breath Weapon": "TODO",
+    "skills": [],
+    "extra_skills": 0,
+    "prof": [],
     "features": {
       "Damage Resistance": "You have resistance to the damage type associated with your draconic ancestry."
     }
@@ -35,7 +39,11 @@
       "Common",
       "Dwarvish"
     ],
+    "extra languages": 0,
     "darkvision": "yes",
+    "skills": [],
+    "extra_skills": 0,
+    "prof": [],
     "features": {
       "Dwarven Toughness": "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level."
     }
@@ -55,11 +63,15 @@
       "Common",
       "Dwarvish"
     ],
+    "extra languages": 0,
     "darkvision": "yes",
+    "skills": [],
+    "extra_skills": 0,
     "prof": [
       "light armor",
       "medium armor"
-    ]
+    ],
+    "features": {}
   },
   "High Elf": {
     "mods": {
@@ -81,6 +93,7 @@
     "skills": [
       "Perception"
     ],
+    "extra_skills": 0,
     "prof": [
       "longsword",
       "shortsword",
@@ -108,10 +121,12 @@
       "Common",
       "Elvish"
     ],
+    "extra languages": 0,
     "darkvision": "yes",
     "skills": [
       "Perception"
     ],
+    "extra_skills": 0,
     "prof": [
       "longsword",
       "shortsword",
@@ -139,10 +154,12 @@
       "Common",
       "Elvish"
     ],
+    "extra languages": 0,
     "darkvision": "yes",
     "skills": [
       "Perception"
     ],
+    "extra_skills": 0,
     "prof": [
       "rapier",
       "shortsword",
@@ -171,7 +188,11 @@
       "Common",
       "Gnomish"
     ],
+    "extra languages": 0,
     "darkvision": "yes",
+    "skills": [],
+    "extra_skills": 0,
+    "prof": [],
     "features": {
       "Gnome Cunning": "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.",
       "Natural Illusionist": "You know the Minor Illusion cantrip. Intelligence is your spellcasting modifier for it.",
@@ -193,7 +214,11 @@
       "Common",
       "Gnomish"
     ],
+    "extra languages": 0,
     "darkvision": "yes",
+    "skills": [],
+    "extra_skills": 0,
+    "prof": [],
     "features": {
       "Gnome Cunning": "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.",
       "Artificer's Lore": "Whenever you make an Intelligence (History) check related to magical, alchemical, or technological items, you can add twice your proficiency bonus instead of any other proficiency bonus that may apply.",
@@ -220,7 +245,9 @@
     ],
     "extra languages": 1,
     "darkvision": "yes",
-    "skills": 2,
+    "skills": [],
+    "extra_skills": 2,
+    "prof": [],
     "features": {
       "Fey Ancestry": "You have advantage on saving throws against being charmed, and magic can't put you to sleep."
     }
@@ -240,7 +267,11 @@
       "Common",
       "Halfling"
     ],
+    "extra languages": 0,
     "darkvision": "no",
+    "skills": [],
+    "extra_skills": 0,
+    "prof": [],
     "features": {
       "Lucky": "When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die. You must use the new result, even if it is a 1.",
       "Brave": "You have advantage on saving throws against being frightened.",
@@ -263,7 +294,11 @@
       "Common",
       "Halfling"
     ],
+    "extra languages": 0,
     "darkvision": "no",
+    "skills": [],
+    "extra_skills": 0,
+    "prof": [],
     "features": {
       "Lucky": "When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die. You must use the new result, even if it is a 1.",
       "Brave": "You have advantage on saving throws against being frightened.",
@@ -286,10 +321,13 @@
       "Common",
       "Orc"
     ],
+    "extra languages": 0,
     "darkvision": "yes",
     "skills": [
       "Intimidation"
     ],
+    "extra_skills": 0,
+    "prof": [],
     "features": {
       "Relentless Endurance": "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can't use this feature again until you finish a long rest.",
       "Savage Attacks": "When you score a critical hit with a melee weapon attack, you can roll one of the weapon's damage dice one additional time and add it to the extra damage of the critical hit."
@@ -314,7 +352,11 @@
       "Common"
     ],
     "extra languages": 1,
-    "darkvision": "no"
+    "darkvision": "no",
+    "skills": [],
+    "extra_skills": 0,
+    "prof": [],
+    "features": {}
   },
   "Tiefling": {
     "mods": {
@@ -331,7 +373,11 @@
       "Common",
       "Infernal"
     ],
+    "extra languages": 0,
     "darkvision": "yes",
+    "skills": [],
+    "extra_skills": 0,
+    "prof": [],
     "features": {
       "Hellish Resistance": "You have resistance to fire damage.",
       "Infernal Legacy": "You know the Thaumaturgy cantrip. Once you reach 3rd level, you can cast the Hellish Rebuke spell once as a 2nd-level spell. Once you reach 5th level, you can also cast the Darkness spell once. You must finish a long rest to cast these spells again with this trait. Charisma is your spellcasting ability for these spells."
