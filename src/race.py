@@ -10,7 +10,7 @@ class Race:
         self.mods = race_data["mods"]
         self.speed = race_data["speed"]
         self.languages = select_languages(
-            race_data["extra_languages"], race_data["languages"]
+            race_data["extra languages"], race_data["languages"]
         )
         self.darkvision = True if race_data["darkvision"] == "yes" else False
         self.skills = race_data["skills"]
@@ -21,5 +21,4 @@ class Race:
 
     def select_random_race(self) -> (str, dict):
         all_races = utils.load_json("../data/races.json")
-        race_name = random.choice(all_races)
-        return race_name, all_races[race_name]
+        return random.choice(list(all_races.items()))

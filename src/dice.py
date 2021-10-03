@@ -25,21 +25,7 @@ def roll_one_stat() -> int:
 
 # takes 7 stats, keeps highest 6
 def generate_stats() -> dict:
-    seven_stats = [
-        roll_one_stat(),
-        roll_one_stat(),
-        roll_one_stat(),
-        roll_one_stat(),
-        roll_one_stat(),
-        roll_one_stat(),
-        roll_one_stat(),
-    ]
+    seven_stats = [roll_one_stat() for i in range(7)]
     six_stats = drop_lowest(seven_stats)
-    return {
-        "STR": six_stats[0],
-        "DEX": six_stats[1],
-        "CON": six_stats[2],
-        "INT": six_stats[3],
-        "WIS": six_stats[4],
-        "CHA": six_stats[5],
-    }
+    stat_keys = ["STR", "DEX", "CON", "INT", "WIS", "CHA"]
+    return dict(zip(stat_keys, six_stats))
