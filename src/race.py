@@ -6,7 +6,7 @@ from languages import select_languages
 
 class Race:
     def __init__(self):
-        self.name, race_data = self.select_random_race()
+        self.name, race_data = utils.select_random_from_json("race")
         self.mods = race_data["mods"]
         self.speed = race_data["speed"]
         self.languages = select_languages(
@@ -18,7 +18,3 @@ class Race:
         self.proficiencies = race_data["prof"]
         self.features = race_data["features"]
         self.size = race_data["size"]
-
-    def select_random_race(self) -> (str, dict):
-        all_races = utils.load_json("../data/races.json")
-        return random.choice(list(all_races.items()))
