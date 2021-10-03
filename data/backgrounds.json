@@ -71,7 +71,7 @@
       "I pocket anything I see that might have some value."
     ],
     "ideal": [
-      "Independence. I am a free spirit – no one tells me what to do. (Chaotic)",
+      "Independence. I am a free spirit - no one tells me what to do. (Chaotic)",
       "Fairness. I never target people who can't afford to lose a few coins. (Lawful)",
       "Charity. I distribute the money I acquire to the people who really need it. (Good)",
       "Creativity. I never run the same con twice. (Chaotic)",
@@ -80,7 +80,7 @@
     ],
     "bond": [
       "I fleeced the wrong person and must work to ensure that this individual never crosses paths with me or those I care about.",
-      "I owe everything to my mentor – a horrible person who's probably rotting in jail somewhere.",
+      "I owe everything to my mentor - a horrible person who's probably rotting in jail somewhere.",
       "Somewhere out there, I have a child who doesn't know me. I'm making the world better for him or her.",
       "I come from a noble family, and one day I'll reclaim my lands and title from those who stole them from me.",
       "A powerful person killed someone I love. Some day soon, I'll have my revenge.",
@@ -114,7 +114,7 @@
     "trait": [
       "I always have a plan for what to do when things go wrong.",
       "I am always calm, no matter what the situation. I never raise my voice or let my emotions control me.",
-      "The first thing I do in a new place is note the locations of everything valuable – or where such things could be hidden.",
+      "The first thing I do in a new place is note the locations of everything valuable - or where such things could be hidden.",
       "I would rather make a new friend than a new enemy.",
       "I am incredibly slow to trust. Those who seem the fairest often have the most to hide.",
       "I don't pay attention to the risks in a situation. Never tell me the odds.",
@@ -226,7 +226,7 @@
       "Respect. People deserve to be treated with dignity and respect. (Good)",
       "Fairness. No one should get preferential treatment before the law, and no one is above the law. (Lawful)",
       "Freedom. Tyrants must not be allowed to oppress the people. (Chaotic)",
-      "Might. If I become strong, I can take what I want – what I deserve.",
+      "Might. If I become strong, I can take what I want - what I deserve.",
       "Sincerity. There's no good in pretending to be something I'm not. (Neutral)",
       "Destiny. Nothing and no one can steer me away from my higher calling. (Any)"
     ],
@@ -263,7 +263,7 @@
     ],
     "gp": 15,
     "trait": [
-      "I believe that anything worth doing is worth doing right. I can't help it – I'm a perfectionist.",
+      "I believe that anything worth doing is worth doing right. I can't help it - I'm a perfectionist.",
       "I'm a snob who looks down on those who can't appreciate fine art.",
       "I always want to know how things work and what makes people tick.",
       "I'm full of witty aphorisms and have a proverb for every occasion.",
@@ -292,7 +292,7 @@
       "I'll do anything to get my hands on something rare or priceless.",
       "I'm quick to assume that someone is trying to cheat me.",
       "No one must ever learn that I once stole money from guild coffers.",
-      "I'm never satisfied with what I have – I always want more.",
+      "I'm never satisfied with what I have - I always want more.",
       "I would kill to acquire a noble title.",
       "I'm horribly jealous of anyone who can outshine my handiwork. Everywhere I go, I'm surrounded by rivals."
     ]
@@ -465,7 +465,7 @@
     "gp": 10,
     "trait": [
       "I use polysyllabic words that convey the impression of great erudition.",
-      "I've read every book in the world's greatest libraries – or I like to boast that I have.",
+      "I've read every book in the world's greatest libraries - or I like to boast that I have.",
       "I'm used to helping out those who aren't as smart as I am, and I patiently explain anything and everything to others.",
       "There's nothing I like more than a good mystery.",
       "I'm willing to listen to every side of an argument before I make my own judgment.",
@@ -534,7 +534,7 @@
     ],
     "bond": [
       "I'm loyal to my captain first, everything else second.",
-      "The ship is most important – crewmates and captains come and go.",
+      "The ship is most important - crewmates and captains come and go.",
       "I'll always remember my first ship.",
       "In a harbor town, I have a paramour whose eyes nearly stole me from the sea.",
       "I was cheated out of my fair share of the profits, and I want to get my due.",
@@ -594,7 +594,7 @@
     "flaw": [
       "The monstrous enemy we faced in battle still leaves me quivering with fear.",
       "I have little respect for anyone who is not a proven warrior.",
-      "I made a terrible mistake in battle cost many lives – and I would do anything to keep that mistake secret.",
+      "I made a terrible mistake in battle cost many lives - and I would do anything to keep that mistake secret.",
       "My hatred of my enemies is blind and unreasoning.",
       "I obey the law, even if the law causes misery.",
       "I'd rather eat my armor than admit when I'm wrong."

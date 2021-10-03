@@ -32,7 +32,7 @@
   ],
   "armor": {
     "padded": "11 + DEX",
-    "leather": "11 _ DEX",
+    "leather": "11 + DEX",
     "studded leather:": "12 + DEX",
     "hide": "13 + DEX (2)",
     "chain shirt": "13 + DEX (2)",

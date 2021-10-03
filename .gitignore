@@ -130,4 +130,4 @@ dmypy.json
 .pyre/
 
 # other
-data_fields.txt
+data/data_fields.txt

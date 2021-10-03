@@ -1,0 +1,9 @@
+annot_key: /Annots  # key for all annotations within a page
+annot_field_key: /T  # Name of field. i.e. given ID of field
+annot_val_key: /V  # Value of field
+annot_rect_key: /Rect
+annot_form_type: /FT  # Form type (e.g. text/button)
+annot_form_button: /Btn  # ID for buttons, i.e. a checkbox
+annot_form_text: /Tx  # ID for textbox
+subtype_key: /Subtype
+widget_subtype_key: /Widget
