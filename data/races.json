@@ -18,7 +18,7 @@
     "darkvision": "no",
     "Breath Weapon": "TODO",
     "skills": [],
-    "extra_skills": 0,
+    "skill number": 0,
     "prof": [],
     "features": {
       "Damage Resistance": "You have resistance to the damage type associated with your draconic ancestry."
@@ -42,7 +42,7 @@
     "extra languages": 0,
     "darkvision": "yes",
     "skills": [],
-    "extra_skills": 0,
+    "skill number": 0,
     "prof": [],
     "features": {
       "Dwarven Toughness": "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level."
@@ -66,7 +66,7 @@
     "extra languages": 0,
     "darkvision": "yes",
     "skills": [],
-    "extra_skills": 0,
+    "skill number": 0,
     "prof": [
       "light armor",
       "medium armor"
@@ -93,7 +93,7 @@
     "skills": [
       "Perception"
     ],
-    "extra_skills": 0,
+    "skill number": 0,
     "prof": [
       "longsword",
       "shortsword",
@@ -126,7 +126,7 @@
     "skills": [
       "Perception"
     ],
-    "extra_skills": 0,
+    "skill number": 0,
     "prof": [
       "longsword",
       "shortsword",
@@ -159,7 +159,7 @@
     "skills": [
       "Perception"
     ],
-    "extra_skills": 0,
+    "skill number": 0,
     "prof": [
       "rapier",
       "shortsword",
@@ -191,7 +191,7 @@
     "extra languages": 0,
     "darkvision": "yes",
     "skills": [],
-    "extra_skills": 0,
+    "skill number": 0,
     "prof": [],
     "features": {
       "Gnome Cunning": "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.",
@@ -217,7 +217,7 @@
     "extra languages": 0,
     "darkvision": "yes",
     "skills": [],
-    "extra_skills": 0,
+    "skill number": 0,
     "prof": [],
     "features": {
       "Gnome Cunning": "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.",
@@ -246,7 +246,7 @@
     "extra languages": 1,
     "darkvision": "yes",
     "skills": [],
-    "extra_skills": 2,
+    "skill number": 2,
     "prof": [],
     "features": {
       "Fey Ancestry": "You have advantage on saving throws against being charmed, and magic can't put you to sleep."
@@ -270,7 +270,7 @@
     "extra languages": 0,
     "darkvision": "no",
     "skills": [],
-    "extra_skills": 0,
+    "skill number": 0,
     "prof": [],
     "features": {
       "Lucky": "When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die. You must use the new result, even if it is a 1.",
@@ -297,7 +297,7 @@
     "extra languages": 0,
     "darkvision": "no",
     "skills": [],
-    "extra_skills": 0,
+    "skill number": 0,
     "prof": [],
     "features": {
       "Lucky": "When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die. You must use the new result, even if it is a 1.",
@@ -326,7 +326,7 @@
     "skills": [
       "Intimidation"
     ],
-    "extra_skills": 0,
+    "skill number": 0,
     "prof": [],
     "features": {
       "Relentless Endurance": "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can't use this feature again until you finish a long rest.",
@@ -354,7 +354,7 @@
     "extra languages": 1,
     "darkvision": "no",
     "skills": [],
-    "extra_skills": 0,
+    "skill number": 0,
     "prof": [],
     "features": {}
   },
@@ -376,7 +376,7 @@
     "extra languages": 0,
     "darkvision": "yes",
     "skills": [],
-    "extra_skills": 0,
+    "skill number": 0,
     "prof": [],
     "features": {
       "Hellish Resistance": "You have resistance to fire damage.",
