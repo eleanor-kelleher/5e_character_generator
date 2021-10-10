@@ -8,9 +8,6 @@ def load_json(file_path: str) -> dict:
         return data_dict
 
 
-def select_random_from_json(group):
-    mapping = {"class": "../data/classes.json",
-               "background": "../data/backgrounds.json",
-               "race": "../data/races.json"}
-    all_options = load_json(mapping[group])
+def select_random_from_json(json_file: str):
+    all_options = load_json(json_file)
     return random.choice(list(all_options.items()))
