@@ -1,7 +1,6 @@
 import random
 
 from src import utils
-from languages import select_languages
 
 
 class Race:
