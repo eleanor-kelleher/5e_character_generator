@@ -50,6 +50,7 @@
       "Deception",
       "SleightofHand"
     ],
+    "languages": 0,
     "prof": [
       "disguise kit",
       "forgery kit"
@@ -102,6 +103,7 @@
       "Deception",
       "Stealth"
     ],
+    "languages": 0,
     "prof": [
       "gaming set",
       "thieves, tools"
@@ -151,6 +153,7 @@
       "Acrobatics",
       "Performance"
     ],
+    "languages": 0,
     "prof": [
       "instrument",
       "disguise kit"
@@ -201,6 +204,7 @@
       "Animal",
       "Survival"
     ],
+    "languages": 0,
     "prof": [
       "artisan",
       "vehicles (land)"
@@ -503,6 +507,7 @@
       "Athletics",
       "Perception"
     ],
+    "languages": 0,
     "prof": [
       "navigator's tools",
       "vehicles (water)"
@@ -554,6 +559,7 @@
       "Athletics",
       "Intimidation"
     ],
+    "languages": 0,
     "prof": [
       "vehicles (land)",
       "gaming set (1)"
@@ -605,6 +611,7 @@
       "SleightofHand",
       "Stealth"
     ],
+    "languages": 0,
     "prof": [
       "disguise kit",
       "thieves' tools"
