@@ -4,12 +4,11 @@ from src import utils
 
 
 class PlayerClass:
-    def __init__(self, stats: dict, class_name: str, class_data: dict):
-        # TODO Can use stats to optimise class selection
+    def __init__(self, class_name: str, class_data: dict):
         self.name = class_name
         self.level = 1
         self.hit_dice = "d" + str(class_data["hd"])
-
+        self.min_max_stats = class_data["min_max_stats"]
         self.ac = class_data["AC"]
         self.proficiencies = class_data["prof"]
         self.saves = class_data["saves"]
