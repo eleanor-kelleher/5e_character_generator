@@ -4,8 +4,8 @@ import random
 
 def load_json(file_path: str) -> dict:
     with open(file_path) as file:
-        data_dict = json.loads(file.read())
-        return data_dict
+        x = json.loads(file.read())
+        return x
 
 
 def select_random_from_json(json_file: str):

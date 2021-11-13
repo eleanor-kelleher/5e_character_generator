@@ -24,11 +24,12 @@ class CharacterSheet:
         self.config = yaml.safe_load(open("../conf/conf.yaml"))
         self.sheet_stuff = utils.load_json("../data/character_stats.json")
         self.all_items = utils.load_json(ITEM_PATH)
-        self.c = PlayerClass(*utils.select_random_from_json("../data/classes.json"))
+        self.clss = PlayerClass(*utils.select_random_from_json("../data/classes.json"))
         self.stats = dice.generate_stats()
-        self.r = Race(*utils.select_random_from_json("../data/races.json"))
+        self.race = Race(*utils.select_random_from_json("../data/races.json"))
         self.finalise_stats()
-        self.b = Background(*utils.select_random_from_json("../data/backgrounds.json"))
+        self.bg = Background(*utils.select_random_from_json("../data/backgrounds.json"))
+        print(self.clss.name, " ", self.race.name, " ", self.bg.name)
         self.character_name = names.get_first_name()
         self.xp = 0
 
@@ -36,15 +37,15 @@ class CharacterSheet:
         self.prof = mods.plus_or_minus(self.sheet_stuff["prof"])
         self.alignment = random.choice(random.choice(self.sheet_stuff["alignment"]))
 
-        # TODO: select skills and proficiencies
+        # TODO: fix cleric subclasses
 
-        self.proficiencies = []
-        self.skills = []
+        self.final_profs = self.select_profs()
+        self.final_skills = self.select_skills()
 
     def finalise_stats(self):
         # Resorting the important stats based on which class was selected
-        min_maxed_stats = self.c.min_max_stats
-        for idx, stat in enumerate(self.c.min_max_stats):
+        min_maxed_stats = self.clss.min_max_stats
+        for idx, stat in enumerate(self.clss.min_max_stats):
             if "/" in stat:
                 min_maxed_stats[idx] = random.choice(stat.split("/"))
         stats_sorted = sorted((v, k) for k, v in self.stats.items())
@@ -56,23 +57,44 @@ class CharacterSheet:
             = self.stats[stats_sorted[-2][1]], self.stats[min_maxed_stats[1]]
 
         for stat_name in self.stats:
-            if stat_name in self.r.mods:
-                self.stats[stat_name] = self.stats[stat_name] + self.r.mods[stat_name]
+            if stat_name in self.race.mods:
+                self.stats[stat_name] = self.stats[stat_name] + self.race.mods[stat_name]
 
     def select_languages(self):
         all_languages = utils.load_json("../data/languages.json")
-        known_languages = self.c.languages + self.r.languages
+        known_languages = self.clss.languages + self.race.languages
         # removing possible duplicates from list
         known_languages = list(dict.fromkeys(known_languages))
-        extra_languages = self.r.extra_languages + self.b.extra_languages
+        extra_languages = self.race.extra_languages + self.bg.extra_languages
         if extra_languages == 0:
             return known_languages
         if len(known_languages) + extra_languages >= len(all_languages):
             return all_languages
         for lang in known_languages:
-            all_languages.remove(lang)
+            if lang in all_languages:
+                all_languages.remove(lang)
         return known_languages + random.sample(all_languages, extra_languages)
 
+    def select_skills(self):
+        all_skills = utils.load_json("../data/skills.json")
+        known_skills = self.bg.skills + self.race.skills
+        # removing any duplicates from the list
+        known_skills = list(dict.fromkeys(known_skills))
+        skill_options = self.clss.skills
+        for skill in known_skills:
+            if skill in skill_options:
+                skill_options.remove(skill)
+
+        known_skills = known_skills + random.sample(skill_options, self.clss.skill_number)
+
+        if self.race.skill_number > 0:
+            for skill in known_skills:
+                all_skills.remove(skill)
+            known_skills = known_skills + random.sample(all_skills, self.race.skill_number)
+        return known_skills
+
+    def select_profs(self):
+        return ", ".join(self.clss.proficiencies + self.bg.proficiencies + self.race.proficiencies)
 
 
 # def write_fillable_pdf(input_pdf_path: str, output_pdf_path: str, data_dict: dict):

@@ -5,6 +5,7 @@
       "Religion"
     ],
     "languages": 2,
+    "prof": [],
     "equipment": [
       "A holy symbol, a prayer book, incense (5), vestments, common clothes"
     ],
@@ -44,7 +45,6 @@
       "Once I pick a goal, I become obsessed with it to the detriment of everything else in my life."
     ]
   },
-
   "Charlatan": {
     "skills": [
       "Deception",
@@ -97,7 +97,6 @@
       "I hate to admit it and will hate myself for it, but I'll run and preserve my own hide if the going gets tough."
     ]
   },
-
   "Criminal": {
     "skills": [
       "Deception",
@@ -105,8 +104,8 @@
     ],
     "languages": 0,
     "prof": [
-      "gaming set",
-      "thieves, tools"
+      "gaming set (1)",
+      "thieves' tools"
     ],
     "equipment": [
       "crowbar",
@@ -206,7 +205,7 @@
     ],
     "languages": 0,
     "prof": [
-      "artisan",
+      "artisan tools (1)",
       "vehicles (land)"
     ],
     "equipment": [
@@ -258,7 +257,7 @@
     ],
     "languages": 1,
     "prof": [
-      "artisan"
+      "artisan tools (1)"
     ],
     "equipment": [
       "artisan",
@@ -459,6 +458,7 @@
       "History"
     ],
     "languages": 2,
+    "prof": [],
     "equipment": [
       "quill",
       "small knife",
