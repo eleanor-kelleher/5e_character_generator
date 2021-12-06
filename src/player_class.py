@@ -5,9 +5,10 @@ from src import utils
 
 class PlayerClass:
     def __init__(self, class_name: str, class_data: dict):
-        self.name = class_name
+        self.class_name = class_name
         self.level = 1
-        self.hit_dice = "d" + str(class_data["hd"])
+        self.proficiency_bonus = 2
+        self.hit_dice = class_data["hd"]
         self.min_max_stats = class_data["min_max_stats"]
         self.ac = class_data["AC"]
         self.proficiencies = class_data["prof"]
@@ -20,14 +21,21 @@ class PlayerClass:
         self.get_features(class_data)
         self.features = class_data["features"]
 
+    def class_to_dict(self):
+        return {
+            "ClassLevel": f"{self.class_name} {self.subclass} {str(self.level)}",
+            "HD": "1d" + str(self.hit_dice),
+            "HDTotal": str(self.level)
+        }
+
     def get_features(self, class_data: dict):
-        if self.name == "Fighter":
+        if self.class_name == "Fighter":
             style = random.choice(list(class_data["features"]["fighting style"].items()))
             class_data["features"].pop("fighting style")
             class_data["features"].update({"Fighting Style: " + style[0]: style[1]})
         elif self.subclass == "Draconic Bloodline":
             self.ac = class_data["subclass"][self.subclass]["AC"]
-            self.languages.append(class_data["subclass"][self.subclass]["languages"])
+            self.languages = self.languages + class_data["subclass"][self.subclass]["languages"]
             draconic_type = random.choice(class_data["subclass"][self.subclass]["type"])
             class_data["features"].update({"Draconic Type": draconic_type})
         if self.subclass:

@@ -5,7 +5,7 @@ from src import utils
 
 class Race:
     def __init__(self, race_name: str, race_data: dict):
-        self.name = race_name
+        self.race_name = race_name
         self.mods = race_data["mods"]
         self.speed = race_data["speed"]
         self.languages = race_data["languages"]
@@ -16,3 +16,9 @@ class Race:
         self.proficiencies = race_data["prof"]
         self.features = race_data["features"]
         self.size = race_data["size"]
+
+    def race_to_dict(self):
+        return {
+            "Race": self.race_name,
+            "Speed": self.speed
+        }
