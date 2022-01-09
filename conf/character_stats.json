@@ -1,0 +1,96 @@
+{
+  "prof": 2,
+  "alignment": [
+    "LG",
+    "NG",
+    "CG",
+    "LN",
+    "N",
+    "CN",
+    "LE",
+    "NE",
+    "CE"
+  ],
+  "saving_throws": {
+    "ST Strength": "Check Box 11",
+    "ST Dexterity": "Check Box 18",
+    "ST Constitution": "Check Box 19",
+    "ST Intelligence": "Check Box 20",
+    "ST Wisdom": "Check Box 21",
+    "ST Charisma": "Check Box 22"
+  },
+  "skills": {
+    "Acrobatics": {
+      "mod": "DEXmod",
+      "checkbox": "Check Box 23"
+    },
+    "Animal": {
+      "mod": "WISmod",
+      "checkbox": "Check Box 24"
+    },
+    "Arcana": {
+      "mod": "INTmod",
+      "checkbox": "Check Box 25"
+    },
+    "Athletics": {
+      "mod": "STRmod",
+      "checkbox": "Check Box 26"
+    },
+    "Deception": {
+      "mod": "CHamod",
+      "checkbox": "Check Box 27"
+    },
+    "History": {
+      "mod": "INTmod",
+      "checkbox": "Check Box 28"
+    },
+    "Insight": {
+      "mod": "WISmod",
+      "checkbox": "Check Box 29"
+    },
+    "Intimidation": {
+      "mod": "CHamod",
+      "checkbox": "Check Box 30"
+    },
+    "Investigation": {
+      "mod": "INTmod",
+      "checkbox": "Check Box 31"
+    },
+    "Medicine": {
+      "mod": "WISmod",
+      "checkbox": "Check Box 32"
+    },
+    "Nature": {
+      "mod": "INTmod",
+      "checkbox": "Check Box 33"
+    },
+    "Perception": {
+      "mod": "WISmod",
+      "checkbox": "Check Box 34"
+    },
+    "Performance": {
+      "mod": "CHamod",
+      "checkbox": "Check Box 35"
+    },
+    "Persuasion": {
+      "mod": "CHamod",
+      "checkbox": "Check Box 36"
+    },
+    "Religion": {
+      "mod": "INTmod",
+      "checkbox": "Check Box 37"
+    },
+    "SleightofHand": {
+      "mod": "DEXmod",
+      "checkbox": "Check Box 38"
+    },
+    "Stealth": {
+      "mod": "DEXmod",
+      "checkbox": "Check Box 39"
+    },
+    "Survival": {
+      "mod": "WISmod",
+      "checkbox": "Check Box 40"
+    }
+  }
+}

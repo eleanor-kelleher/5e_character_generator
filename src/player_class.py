@@ -2,9 +2,9 @@ import random
 
 from src import utils
 
-
 class PlayerClass:
-    def __init__(self, class_name: str, class_data: dict):
+    def __init__(self, st_checkboxes: dict, class_name: str, class_data: dict):
+        self.st_checkboxes = st_checkboxes
         self.class_name = class_name
         self.level = 1
         self.proficiency_bonus = 2
@@ -22,11 +22,14 @@ class PlayerClass:
         self.features = class_data["features"]
 
     def class_to_dict(self):
-        return {
+        data = {
             "ClassLevel": f"{self.class_name} {self.subclass} {str(self.level)}",
             "HD": "1d" + str(self.hit_dice),
             "HDTotal": str(self.level)
         }
+        for st in self.saves:
+            data[self.st_checkboxes[st]] = "Yes"
+        return data
 
     def get_features(self, class_data: dict):
         if self.class_name == "Fighter":
@@ -44,7 +47,7 @@ class PlayerClass:
     @staticmethod
     def select_item_option(equipment: list) -> list:
         final_list = []
-        all_items = utils.load_json("../data/items.json")
+        all_items = utils.load_json("../conf/items.json")
         for item in equipment:
             if "/" in item:
                 item_options = item.split("/")

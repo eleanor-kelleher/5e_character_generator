@@ -5,8 +5,7 @@ import pdfrw
 import random
 import yaml
 
-import dice
-import mods
+import sheet_maths
 import utils
 
 from race import Race
@@ -16,14 +15,14 @@ from player_class import PlayerClass
 # STATICS
 BLANK_CHAR_SHEET = "pdfs/Character Sheet - Form Fillable.pdf"
 OUTPUT_CHAR_SHEET = "pdfs/Character_Sheet_Output.pdf"
-LANGUAGE_PATH = "../data/languages.json"
-BACKGROUND_PATH = "../data/backgrounds.json"
-ITEM_PATH = "../data/items.json"
+LANGUAGE_PATH = "../conf/languages.json"
+BACKGROUND_PATH = "../conf/backgrounds.json"
+ITEM_PATH = "../conf/items.json"
 
 ANNOT_KEY = "/Annots"  # key for all annotations within a page
-ANNOT_FIELD_KEY = "/T"  # Name of field. i.e. given ID of field
-ANNOT_VAL_KEY = "/V"  # Value of field
-ANNOT_RECT_KEY = "/Rect"
+ANNOT_KEY_field = "/T"  # Name of field. i.e. given ID of field
+ANNOT_KEY_val = "/V"  # Value of field
+ANNOT_KEY_rect = "/Rect"
 ANNOT_FORM_type = "/FT"  # Form type (e.g. text/button)
 ANNOT_FORM_button = "/Btn"  # ID for buttons, i.e. a checkbox
 ANNOT_FORM_text = "/Tx"  # ID for textbox
@@ -37,20 +36,18 @@ WIDGET_SUBTYPE_KEY = "/Widget"
 
 class CharacterSheet:
     def __init__(self):
-        self.config = yaml.safe_load(open("../conf/conf.yaml"))
-        self.sheet_stuff = utils.load_json("../data/character_stats.json")
+        self.sheet_stuff = utils.load_json("../conf/character_stats.json")
         self.all_items = utils.load_json(ITEM_PATH)
-        self.clss = PlayerClass(*utils.select_random_from_json("../data/classes.json"))
-        self.stats = dice.generate_stats()
-        self.race = Race(*utils.select_random_from_json("../data/races.json"))
+        self.clss = PlayerClass(self.sheet_stuff["saving_throws"], *utils.select_random_from_json("../conf/classes.json"))
+        self.stats = sheet_maths.generate_stats()
+        self.race = Race(*utils.select_random_from_json("../conf/races.json"))
         self.finalise_stats()
-        self.mods = dice.generate_mods(self.stats)
-        self.saves = dice.generate_saves(self.mods, self.clss.saves, self.clss.proficiency_bonus)
-        self.bg = Background(*utils.select_random_from_json("../data/backgrounds.json"))
+        self.mods = sheet_maths.generate_mods(self.stats)
+        self.saves = sheet_maths.generate_saves(self.mods, self.clss.saves, self.clss.proficiency_bonus)
+        self.bg = Background(*utils.select_random_from_json("../conf/backgrounds.json"))
         print(self.clss.class_name, " ", self.race.race_name, " ", self.bg.bg_name)
 
         self.final_languages = self.select_languages()
-        self.prof = mods.plus_or_minus(self.sheet_stuff["prof"])
 
         self.final_profs = self.select_profs()
         self.final_skills = self.select_skills()
@@ -74,7 +71,7 @@ class CharacterSheet:
                 self.stats[stat_name] = self.stats[stat_name] + self.race.mods[stat_name]
 
     def select_languages(self):
-        all_languages = utils.load_json("../data/languages.json")
+        all_languages = utils.load_json("../conf/languages.json")
         known_languages = self.clss.languages + self.race.languages
 
         # removing possible duplicates from list
@@ -90,7 +87,7 @@ class CharacterSheet:
         return ", ".join(known_languages + random.sample(all_languages, extra_languages))
 
     def select_skills(self):
-        all_skills = utils.load_json("../data/skills.json")
+        all_skills = utils.load_json("../conf/skills.json")
         known_skills = self.bg.skills + self.race.skills
         # removing any duplicates from the list
         known_skills = list(dict.fromkeys(known_skills))
@@ -114,7 +111,7 @@ class CharacterSheet:
         data = {
             "CharacterName": names.get_first_name(),
             "XP": "0",
-            "ProfBonus": "+" + str(self.clss.proficiency_bonus),
+            "ProfBonus": sheet_maths.plus_or_minus(self.clss.proficiency_bonus),
             "Alignment": random.choice(random.choice(self.sheet_stuff["alignment"])),
             "Initiative": self.mods["DEXmod"],
             "HPMax": self.clss.hit_dice + self.mods["CONmod"],
@@ -122,9 +119,18 @@ class CharacterSheet:
             "ProficienciesLang": self.final_languages + "\n\n" + self.final_profs,
             "Features and Traits": utils.dict_to_string(self.race.features) + utils.dict_to_string(self.clss.features)
         }
+        # Checking proficient skill boxes
+        for skill in self.final_skills:
+            data[self.sheet_stuff["skills"][skill]["checkbox"]] = "Yes"
+        for skill in self.sheet_stuff["skills"]:
+            if skill in self.final_skills:
+                data[skill] = sheet_maths.plus_or_minus(self.mods[self.sheet_stuff["skills"][skill]["mod"]]
+                                                        + self.sheet_stuff["prof"])
+            else:
+                data[skill] = sheet_maths.plus_or_minus(self.mods[self.sheet_stuff["skills"][skill]["mod"]])
         data.update(self.stats)
-        data.update(self.mods)
-        data.update(self.saves)
+        data.update(sheet_maths.plus_or_minus_dict(self.mods))
+        data.update(sheet_maths.plus_or_minus_dict(self.saves))
         data.update(self.race.race_to_dict())
         data.update(self.bg.bg_to_dict())
         data.update(self.clss.class_to_dict())
@@ -138,8 +144,8 @@ class CharacterSheet:
         annotations = template_pdf.pages[0][ANNOT_KEY]
         for annotation in annotations:
             if annotation["/Subtype"] == WIDGET_SUBTYPE_KEY:
-                if annotation[ANNOT_FIELD_KEY]:
-                    key = annotation[ANNOT_FIELD_KEY][1:-1].strip()
+                if annotation[ANNOT_KEY_field]:
+                    key = annotation[ANNOT_KEY_field][1:-1].strip()
                     if key in data_dict.keys():
                         if annotation[ANNOT_FORM_type] == ANNOT_FORM_button:
                             # button field i.e. a checkbox

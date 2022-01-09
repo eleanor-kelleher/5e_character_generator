@@ -1,3 +1,4 @@
+import math
 import random
 
 
@@ -46,3 +47,20 @@ def generate_saves(mods: dict, proficient_saves: dict, proficiency_bonus: int):
     for save_key in proficient_saves:
         saves[save_key] = saves[save_key] + proficiency_bonus
     return saves
+
+
+def get_modifier(stat: int, proficiency: int = 0) -> int:
+    return math.floor((stat - 10) / 2) + proficiency
+
+
+def plus_or_minus(mod: int) -> str:
+    if mod >= 0:
+        return f"+{mod}"
+    return str(mod)
+
+
+def plus_or_minus_dict(mod_dict: dict) -> dict:
+    for key, val in mod_dict.items():
+        if val >= 0:
+            mod_dict[key] = f"+{val}"
+    return mod_dict
