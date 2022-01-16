@@ -13,11 +13,10 @@ from background import Background
 from player_class import PlayerClass
 
 # STATICS
-BLANK_CHAR_SHEET = "pdfs/Character Sheet - Form Fillable.pdf"
-OUTPUT_CHAR_SHEET = "pdfs/Character_Sheet_Output.pdf"
-LANGUAGE_PATH = "../conf/languages.json"
-BACKGROUND_PATH = "../conf/backgrounds.json"
-ITEM_PATH = "../conf/items.json"
+BLANK_CHAR_SHEET = "pdfs/CharacterSheet_FormFillable.pdf"
+LANGUAGE_PATH = "conf/languages.json"
+BACKGROUND_PATH = "conf/backgrounds.json"
+ITEM_PATH = "conf/items.json"
 
 ANNOT_KEY = "/Annots"  # key for all annotations within a page
 ANNOT_KEY_field = "/T"  # Name of field. i.e. given ID of field
@@ -36,15 +35,21 @@ WIDGET_SUBTYPE_KEY = "/Widget"
 
 class CharacterSheet:
     def __init__(self):
-        self.sheet_stuff = utils.load_json("../conf/character_stats.json")
+        self.sheet_stuff = utils.load_json("conf/character_stats.json")
         self.all_items = utils.load_json(ITEM_PATH)
-        self.clss = PlayerClass(self.sheet_stuff["saving_throws"], *utils.select_random_from_json("../conf/classes.json"))
+        self.clss = PlayerClass(
+            self.sheet_stuff["saving_throws"],
+            utils.load_json("conf/items.json"),
+            *utils.select_random_from_json("conf/classes.json"),
+        )
         self.stats = sheet_maths.generate_stats()
-        self.race = Race(*utils.select_random_from_json("../conf/races.json"))
+        self.race = Race(*utils.select_random_from_json("conf/races.json"))
         self.finalise_stats()
         self.mods = sheet_maths.generate_mods(self.stats)
-        self.saves = sheet_maths.generate_saves(self.mods, self.clss.saves, self.clss.proficiency_bonus)
-        self.bg = Background(*utils.select_random_from_json("../conf/backgrounds.json"))
+        self.saves = sheet_maths.generate_saves(
+            self.mods, self.clss.saves, self.clss.proficiency_bonus
+        )
+        self.bg = Background(*utils.select_random_from_json("conf/backgrounds.json"))
         print(self.clss.class_name, " ", self.race.race_name, " ", self.bg.bg_name)
 
         self.final_languages = self.select_languages()
@@ -61,17 +66,23 @@ class CharacterSheet:
         stats_sorted = sorted((v, k) for k, v in self.stats.items())
 
         # swaps the top two stat values to the preferred stats
-        self.stats[min_maxed_stats[0]], self.stats[stats_sorted[-1][1]] \
-            = self.stats[stats_sorted[-1][1]], self.stats[min_maxed_stats[0]]
-        self.stats[min_maxed_stats[1]], self.stats[stats_sorted[-2][1]] \
-            = self.stats[stats_sorted[-2][1]], self.stats[min_maxed_stats[1]]
+        self.stats[min_maxed_stats[0]], self.stats[stats_sorted[-1][1]] = (
+            self.stats[stats_sorted[-1][1]],
+            self.stats[min_maxed_stats[0]],
+        )
+        self.stats[min_maxed_stats[1]], self.stats[stats_sorted[-2][1]] = (
+            self.stats[stats_sorted[-2][1]],
+            self.stats[min_maxed_stats[1]],
+        )
 
         for stat_name in self.stats:
             if stat_name in self.race.mods:
-                self.stats[stat_name] = self.stats[stat_name] + self.race.mods[stat_name]
+                self.stats[stat_name] = (
+                    self.stats[stat_name] + self.race.mods[stat_name]
+                )
 
     def select_languages(self):
-        all_languages = utils.load_json("../conf/languages.json")
+        all_languages = utils.load_json("conf/languages.json")
         known_languages = self.clss.languages + self.race.languages
 
         # removing possible duplicates from list
@@ -84,10 +95,12 @@ class CharacterSheet:
         for lang in known_languages:
             if lang in all_languages:
                 all_languages.remove(lang)
-        return ", ".join(known_languages + random.sample(all_languages, extra_languages))
+        return ", ".join(
+            known_languages + random.sample(all_languages, extra_languages)
+        )
 
     def select_skills(self):
-        all_skills = utils.load_json("../conf/skills.json")
+        all_skills = utils.load_json("conf/skills.json")
         known_skills = self.bg.skills + self.race.skills
         # removing any duplicates from the list
         known_skills = list(dict.fromkeys(known_skills))
@@ -96,16 +109,22 @@ class CharacterSheet:
             if skill in skill_options:
                 skill_options.remove(skill)
 
-        known_skills = known_skills + random.sample(skill_options, self.clss.skill_number)
+        known_skills = known_skills + random.sample(
+            skill_options, self.clss.skill_number
+        )
 
         if self.race.skill_number > 0:
             for skill in known_skills:
                 all_skills.remove(skill)
-            known_skills = known_skills + random.sample(all_skills, self.race.skill_number)
+            known_skills = known_skills + random.sample(
+                all_skills, self.race.skill_number
+            )
         return known_skills
 
     def select_profs(self):
-        return ", ".join(self.clss.proficiencies + self.bg.proficiencies + self.race.proficiencies)
+        return ", ".join(
+            self.clss.proficiencies + self.bg.proficiencies + self.race.proficiencies
+        )
 
     def create_character_data_dict(self):
         data = {
@@ -117,17 +136,22 @@ class CharacterSheet:
             "HPMax": self.clss.hit_dice + self.mods["CONmod"],
             "HPCurrent": self.clss.hit_dice + self.mods["CONmod"],
             "ProficienciesLang": self.final_languages + "\n\n" + self.final_profs,
-            "Features and Traits": utils.dict_to_string(self.race.features) + utils.dict_to_string(self.clss.features)
+            "Features and Traits": utils.dict_to_string(self.race.features)
+            + utils.dict_to_string(self.clss.features),
         }
         # Checking proficient skill boxes
         for skill in self.final_skills:
             data[self.sheet_stuff["skills"][skill]["checkbox"]] = "Yes"
         for skill in self.sheet_stuff["skills"]:
             if skill in self.final_skills:
-                data[skill] = sheet_maths.plus_or_minus(self.mods[self.sheet_stuff["skills"][skill]["mod"]]
-                                                        + self.sheet_stuff["prof"])
+                data[skill] = sheet_maths.plus_or_minus(
+                    self.mods[self.sheet_stuff["skills"][skill]["mod"]]
+                    + self.sheet_stuff["prof"]
+                )
             else:
-                data[skill] = sheet_maths.plus_or_minus(self.mods[self.sheet_stuff["skills"][skill]["mod"]])
+                data[skill] = sheet_maths.plus_or_minus(
+                    self.mods[self.sheet_stuff["skills"][skill]["mod"]]
+                )
         data.update(self.stats)
         data.update(sheet_maths.plus_or_minus_dict(self.mods))
         data.update(sheet_maths.plus_or_minus_dict(self.saves))
@@ -137,7 +161,7 @@ class CharacterSheet:
         return data
 
     def write_fillable_pdf(self):
-        template_pdf = pdfrw.PdfReader("../pdfs/Character Sheet - Form Fillable.pdf")
+        template_pdf = pdfrw.PdfReader("pdfs/CharacterSheet_FormFillable.pdf")
 
         data_dict = self.create_character_data_dict()
 
@@ -156,11 +180,19 @@ class CharacterSheet:
                                 )
                             )
                         elif annotation[ANNOT_FORM_type] == ANNOT_FORM_text:
-                            annotation.update(pdfrw.PdfDict(V="{}".format(data_dict[key])))
+                            annotation.update(
+                                pdfrw.PdfDict(V="{}".format(data_dict[key]))
+                            )
         template_pdf.Root.AcroForm.update(
             pdfrw.PdfDict(NeedAppearances=pdfrw.PdfObject("true"))
         )
-        pdfrw.PdfWriter().write("../pdfs/Character_Sheet_Output.pdf", template_pdf)
+        new_pdf_name = f"{data_dict['CharacterName']}_{data_dict['Race'].replace(' ', '-')}" \
+                       f"_{data_dict['ClassLevel'][:-3].replace(' ', '-')}" \
+                       f"_{data_dict['Background'].replace(' ', '-')}"
+        pdfrw.PdfWriter().write(
+            f"pdfs/{new_pdf_name}.pdf",
+            template_pdf,
+        )
 
 
 if __name__ == "__main__":

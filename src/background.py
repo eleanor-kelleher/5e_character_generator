@@ -21,5 +21,5 @@ class Background:
             "PersonalityTraits": self.trait,
             "Ideals": self.ideal,
             "Bonds": self.bond,
-            "Flaws": self.flaw
+            "Flaws": self.flaw,
         }

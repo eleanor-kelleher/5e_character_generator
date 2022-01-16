@@ -18,7 +18,4 @@ class Race:
         self.size = race_data["size"]
 
     def race_to_dict(self):
-        return {
-            "Race": self.race_name,
-            "Speed": self.speed
-        }
+        return {"Race": self.race_name, "Speed": self.speed}

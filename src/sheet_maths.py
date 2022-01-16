@@ -41,8 +41,14 @@ def generate_mods(stats: dict):
 
 
 def generate_saves(mods: dict, proficient_saves: dict, proficiency_bonus: int):
-    save_keys = ["ST Strength", "ST Dexterity", "ST Constitution",
-                 "ST Intelligence", "ST Wisdom", "ST Charisma"]
+    save_keys = [
+        "ST Strength",
+        "ST Dexterity",
+        "ST Constitution",
+        "ST Intelligence",
+        "ST Wisdom",
+        "ST Charisma",
+    ]
     saves = dict(zip(save_keys, mods.values()))
     for save_key in proficient_saves:
         saves[save_key] = saves[save_key] + proficiency_bonus
