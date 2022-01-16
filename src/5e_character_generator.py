@@ -12,44 +12,29 @@ from race import Race
 from background import Background
 from player_class import PlayerClass
 
-# STATICS
-BLANK_CHAR_SHEET = "pdfs/CharacterSheet_FormFillable.pdf"
-LANGUAGE_PATH = "conf/languages.json"
-BACKGROUND_PATH = "conf/backgrounds.json"
-ITEM_PATH = "conf/items.json"
-
-ANNOT_KEY = "/Annots"  # key for all annotations within a page
-ANNOT_KEY_field = "/T"  # Name of field. i.e. given ID of field
-ANNOT_KEY_val = "/V"  # Value of field
-ANNOT_KEY_rect = "/Rect"
-ANNOT_FORM_type = "/FT"  # Form type (e.g. text/button)
-ANNOT_FORM_button = "/Btn"  # ID for buttons, i.e. a checkbox
-ANNOT_FORM_text = "/Tx"  # ID for textbox
-SUBTYPE_KEY = "/Subtype"
-WIDGET_SUBTYPE_KEY = "/Widget"
-
-
 # TODO: fix cleric subclasses
 # TODO: add everything to final data dict
 
 
 class CharacterSheet:
     def __init__(self):
-        self.sheet_stuff = utils.load_json("conf/character_stats.json")
-        self.all_items = utils.load_json(ITEM_PATH)
+        with open("conf/filepaths.yaml") as filepath_config:
+            self.conf = yaml.safe_load(filepath_config)
+        self.sheet_stuff = utils.load_json(self.conf["CHARACTER_STATS_PATH"])
+        self.all_items = utils.load_json(self.conf["ITEM_PATH"])
         self.clss = PlayerClass(
             self.sheet_stuff["saving_throws"],
-            utils.load_json("conf/items.json"),
-            *utils.select_random_from_json("conf/classes.json"),
+            utils.load_json(self.conf["ITEM_PATH"]),
+            *utils.select_random_from_json(self.conf["PLAYER_CLASS_PATH"]),
         )
         self.stats = sheet_maths.generate_stats()
-        self.race = Race(*utils.select_random_from_json("conf/races.json"))
+        self.race = Race(*utils.select_random_from_json(self.conf["RACES_PATH"]))
         self.finalise_stats()
         self.mods = sheet_maths.generate_mods(self.stats)
         self.saves = sheet_maths.generate_saves(
             self.mods, self.clss.saves, self.clss.proficiency_bonus
         )
-        self.bg = Background(*utils.select_random_from_json("conf/backgrounds.json"))
+        self.bg = Background(*utils.select_random_from_json(self.conf["BACKGROUND_PATH"]))
         print(self.clss.class_name, " ", self.race.race_name, " ", self.bg.bg_name)
 
         self.final_languages = self.select_languages()
@@ -82,7 +67,7 @@ class CharacterSheet:
                 )
 
     def select_languages(self):
-        all_languages = utils.load_json("conf/languages.json")
+        all_languages = utils.load_json(self.conf["LANGUAGE_PATH"])
         known_languages = self.clss.languages + self.race.languages
 
         # removing possible duplicates from list
@@ -100,7 +85,7 @@ class CharacterSheet:
         )
 
     def select_skills(self):
-        all_skills = utils.load_json("conf/skills.json")
+        all_skills = utils.load_json(self.conf["SKILLS_PATH"])
         known_skills = self.bg.skills + self.race.skills
         # removing any duplicates from the list
         known_skills = list(dict.fromkeys(known_skills))
@@ -161,17 +146,17 @@ class CharacterSheet:
         return data
 
     def write_fillable_pdf(self):
-        template_pdf = pdfrw.PdfReader("pdfs/CharacterSheet_FormFillable.pdf")
+        template_pdf = pdfrw.PdfReader(self.conf["BLANK_CHAR_SHEET"])
 
         data_dict = self.create_character_data_dict()
 
-        annotations = template_pdf.pages[0][ANNOT_KEY]
+        annotations = template_pdf.pages[0][self.conf["ANNOT_KEY"]]
         for annotation in annotations:
-            if annotation["/Subtype"] == WIDGET_SUBTYPE_KEY:
-                if annotation[ANNOT_KEY_field]:
-                    key = annotation[ANNOT_KEY_field][1:-1].strip()
+            if annotation["/Subtype"] == self.conf["WIDGET_SUBTYPE_KEY"]:
+                if annotation[self.conf["ANNOT_KEY_field"]]:
+                    key = annotation[self.conf["ANNOT_KEY_field"]][1:-1].strip()
                     if key in data_dict.keys():
-                        if annotation[ANNOT_FORM_type] == ANNOT_FORM_button:
+                        if annotation[self.conf["ANNOT_FORM_type"]] == self.conf["ANNOT_FORM_button"]:
                             # button field i.e. a checkbox
                             annotation.update(
                                 pdfrw.PdfDict(
@@ -179,7 +164,7 @@ class CharacterSheet:
                                     AS=pdfrw.PdfName(data_dict[key]),
                                 )
                             )
-                        elif annotation[ANNOT_FORM_type] == ANNOT_FORM_text:
+                        elif annotation[self.conf["ANNOT_FORM_type"]] == self.conf["ANNOT_FORM_text"]:
                             annotation.update(
                                 pdfrw.PdfDict(V="{}".format(data_dict[key]))
                             )

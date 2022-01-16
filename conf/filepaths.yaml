@@ -1,0 +1,18 @@
+BLANK_CHAR_SHEET: pdfs/CharacterSheet_FormFillable.pdf
+LANGUAGE_PATH: conf/languages.json
+PLAYER_CLASS_PATH: conf/classes.json
+RACES_PATH: conf/races.json
+BACKGROUND_PATH: conf/backgrounds.json
+ITEM_PATH: conf/items.json
+CHARACTER_STATS_PATH: conf/character_stats.json
+SKILLS_PATH: conf/skills.json
+
+ANNOT_KEY: /Annots  # key for all annotations within a page
+ANNOT_KEY_field: /T  # Name of field. i.e. given ID of field
+ANNOT_KEY_val: /V  # Value of field
+ANNOT_KEY_rect: /Rect
+ANNOT_FORM_type: /FT  # Form type (e.g. text/button)
+ANNOT_FORM_button: /Btn  # ID for buttons, i.e. a checkbox
+ANNOT_FORM_text: /Tx  # ID for textbox
+SUBTYPE_KEY: /Subtype
+WIDGET_SUBTYPE_KEY: /Widget
