@@ -58,20 +58,29 @@ class PlayerClass:
 
     def select_item_option(self, equipment: list) -> list:
         final_list = []
-
         for item in equipment:
-            if "/" in item:
-                item_options = item.split("/")
-                item = random.choice(item_options)
-            if item == "artisan":
-                final_item = random.choice(self.all_items["artisan"])
-            elif item == "instrument":
-                final_item = random.choice(self.all_items["instrument"])
-            elif item == "simple":
-                final_item = random.choice(list(self.all_items["weapon"]["simple"]))
-            elif item == "martial":
-                final_item = random.choice(list(self.all_items["weapon"]["martial"]))
-            else:
-                final_item = ""
-            final_list.append(final_item)
+            item = utils.split_on_slash(item)
+            item = item.replace("artisan", random.choice(self.all_items["artisan"]))
+            item = item.replace("instrument", random.choice(self.all_items["artisan"]))
+            simple_melee = "simple melee" in item
+            while simple_melee:
+                simple_weapon_choice = random.choice(list(self.all_items["weapon"]["simple"].items()))
+                if self.all_items["weapon"]["simple"][simple_weapon_choice[0]]["melee"] == "yes":
+                    item = item.replace("simple melee", simple_weapon_choice[0], 1)
+                    simple_melee = "simple melee" in item
+            martial_melee = "simple martial" in item
+            while martial_melee:
+                martial_weapon_choice = random.choice(self.all_items["weapon"]["martial"])
+                if self.all_items["weapon"]["martial"][martial_weapon_choice[0]]["melee"] == "yes":
+                    item = item.replace("martial melee", martial_weapon_choice[0], 1)
+                    martial_melee = "simple martial" in item
+            simple = "simple" in item
+            while simple:
+                item = item.replace("simple", random.choice(list(self.all_items["weapon"]["simple"])), 1)
+                simple = "simple" in item
+            martial = "martial" in item
+            while martial:
+                item = item.replace("martial", random.choice(list(self.all_items["weapon"]["martial"])), 1)
+                martial = "martial" in item
+            final_list.append(item)
         return final_list

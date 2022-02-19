@@ -12,8 +12,10 @@ from race import Race
 from background import Background
 from player_class import PlayerClass
 
-# TODO: fix cleric subclasses
-# TODO: add everything to final data dict
+# TODO 0: Finish equipment list
+# TODO 1: Save weapon dicts outside of equipment
+# TODO 2: Add everything to final data dict
+# TODO 3: Fix cleric subclasses
 
 
 class CharacterSheet:
@@ -25,7 +27,7 @@ class CharacterSheet:
         self.clss = PlayerClass(
             self.sheet_stuff["saving_throws"],
             utils.load_json(self.conf["ITEM_PATH"]),
-            *utils.select_random_from_json(self.conf["PLAYER_CLASS_PATH"]),
+            *utils.select_specific_from_json(self.conf["PLAYER_CLASS_PATH"], "Ranger"),
         )
         self.stats = sheet_maths.generate_stats()
         self.race = Race(*utils.select_random_from_json(self.conf["RACES_PATH"]))
@@ -120,6 +122,7 @@ class CharacterSheet:
             "Initiative": self.mods["DEXmod"],
             "HPMax": self.clss.hit_dice + self.mods["CONmod"],
             "HPCurrent": self.clss.hit_dice + self.mods["CONmod"],
+            "Equipment": ", ".join(self.bg.equipment + self.clss.equipment),
             "ProficienciesLang": self.final_languages + "\n\n" + self.final_profs,
             "Features and Traits": utils.dict_to_string(self.race.features)
             + utils.dict_to_string(self.clss.features),

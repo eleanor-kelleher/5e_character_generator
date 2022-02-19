@@ -107,21 +107,25 @@
       },
       "light crossbow": {
         "dmg": "1d8",
+        "melee": "no",
         "type": "piercing",
         "range": "80/320"
       },
       "dart": {
         "dmg": "1d4",
+        "melee": "no",
         "type": "piercing",
         "thrown": "20/60"
       },
       "shortbow": {
         "dmg": "1d6",
+        "melee": "no",
         "type": "piercing",
         "thrown": "80/320"
       },
       "sling": {
         "dmg": "1d4",
+        "melee": "no",
         "type": "bludgeoning",
         "thrown": "30/120"
       }
@@ -229,26 +233,31 @@
       },
       "blowgun": {
         "dmg": "1",
+        "melee": "no",
         "type": "piercing",
         "range": "25/100"
       },
       "hand crossbow": {
         "dmg": "1d6",
+        "melee": "no",
         "type": "piercing",
         "range": "30/120"
       },
       "heavy crossbow": {
         "dmg": "1d10",
+        "melee": "no",
         "type": "piercing",
         "range": "100/400"
       },
       "longbow": {
         "dmg": "1d8",
+        "melee": "no",
         "type": "piercing",
         "range": "150/600"
       },
       "net": {
         "dmg": "grapple",
+        "melee": "no",
         "type": "DC10 STR"
       }
     }
