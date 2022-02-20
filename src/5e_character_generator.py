@@ -257,5 +257,6 @@ class CharacterSheet:
 
 
 if __name__ == "__main__":
-    pc = CharacterSheet()
-    pc.write_fillable_pdf()
+    for i in range(5):
+        pc = CharacterSheet()
+        pc.write_fillable_pdf()

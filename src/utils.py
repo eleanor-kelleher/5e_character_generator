@@ -15,8 +15,7 @@ def select_random_from_json(json_file: str):
 
 def select_specific_from_json(json_file: str, option: str):
     all_options = load_json(json_file)
-    x = all_options[option]
-    return option, x
+    return option, all_options[option]
 
 
 def split_on_slash(item: str):
