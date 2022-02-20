@@ -26,7 +26,7 @@ class CharacterSheet:
         self.clss = PlayerClass(
             self.sheet_stuff["saving_throws"],
             utils.load_json(self.conf["ITEM_PATH"]),
-            *utils.select_specific_from_json(self.conf["PLAYER_CLASS_PATH"], "Fighter"),
+            *utils.select_random_from_json(self.conf["PLAYER_CLASS_PATH"]),
         )
         self.stats = sheet_maths.generate_stats()
         self.race = Race(*utils.select_random_from_json(self.conf["RACES_PATH"]))
@@ -43,7 +43,7 @@ class CharacterSheet:
 
         self.final_profs = self.select_profs()
         self.final_skills = self.select_skills()
-
+        self.ac = self.finalise_ac()
         if "Perception" in self.final_skills:
             self.pp = self.mods["WISmod"] + self.clss.proficiency_bonus + 10
         else:
@@ -149,13 +149,38 @@ class CharacterSheet:
 
         return final_weapon_dict
 
+    def finalise_ac(self):
+        if self.clss.ac == "" and self.clss.armors:
+            ac = 0
+            for armor in self.clss.armors:
+                if (
+                    armor["plus_dex"] == "yes"
+                    and armor["two_dex_max"] == "yes"
+                    and self.mods["DEXmod"] > 2
+                ):
+                    ac = ac + armor["base"] + 2
+                elif armor["plus_dex"] == "yes":
+                    ac = ac + armor["base"] + self.mods["DEXmod"]
+                else:
+                    ac = ac + armor["base"]
+            return ac
+        if self.clss.class_name == "Barbarian":
+            return 10 + self.mods["DEXmod"] + self.mods["CONmod"]
+        if (
+            self.clss.class_name == "Sorcerer"
+            and self.clss.subclass == "Draconic Bloodline"
+        ):
+            return 13 + self.mods["DEXmod"]
+
+        return 10 + self.mods["DEXmod"]
+
     def create_character_data_dict(self):
         data = {
             "CharacterName": names.get_first_name(),
             "XP": "0",
             "ProfBonus": sheet_maths.plus_or_minus(self.clss.proficiency_bonus),
             "Alignment": random.choice(random.choice(self.sheet_stuff["alignment"])),
-            "Initiative": self.mods["DEXmod"],
+            "Initiative": sheet_maths.plus_or_minus(self.mods["DEXmod"]),
             "HPMax": self.clss.hit_dice + self.mods["CONmod"],
             "HPCurrent": self.clss.hit_dice + self.mods["CONmod"],
             "Equipment": ", ".join(self.bg.equipment + self.clss.equipment),
@@ -163,6 +188,7 @@ class CharacterSheet:
             "Features and Traits": utils.dict_to_string(self.race.features)
             + utils.dict_to_string(self.clss.features),
             "Passive": str(self.pp),
+            "AC": self.ac,
         }
         # Checking proficient skill boxes
         for skill in self.final_skills:

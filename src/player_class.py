@@ -21,7 +21,7 @@ class PlayerClass:
         self.skill_number = class_data["skill number"]
         self.skills = class_data["skills"]
         self.equipment = self.select_item_option(class_data["equipment"])
-        self.weapons = self.get_weapon_dicts()
+        self.weapons, self.armors = self.get_weapon_armor_dicts()
         self.subclass = (
             random.choice(list(class_data["subclass"]))
             if class_data["subclass"]
@@ -100,8 +100,9 @@ class PlayerClass:
             final_list = final_list + final_item
         return final_list
 
-    def get_weapon_dicts(self):
+    def get_weapon_armor_dicts(self):
         weapons = []
+        armors = []
         for item in self.equipment:
             if item[-1] == ")":
                 item = item[: len(item) - 4]
@@ -113,4 +114,6 @@ class PlayerClass:
                 weapon = self.all_items["weapon"]["martial"][item]
                 weapon["name"] = item
                 weapons.append(weapon)
-        return weapons
+            if item in self.all_items["armor"]:
+                armors.append(self.all_items["armor"][item])
+        return weapons, armors

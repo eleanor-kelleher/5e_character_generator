@@ -31,19 +31,71 @@
     "viol"
   ],
   "armor": {
-    "padded": "11 + DEX",
-    "leather": "11 + DEX",
-    "studded leather:": "12 + DEX",
-    "hide": "13 + DEX (2)",
-    "chain shirt": "13 + DEX (2)",
-    "scale mail": "14 + DEX (2)",
-    "breastplate": "14 + DEX (2)",
-    "half plate": "15 + DEX (2)",
-    "ring mail": "14",
-    "chain mail": "16",
-    "splint": "17",
-    "plate": "18",
-    "shield": "2"
+    "padded":  {
+      "base": 11,
+      "plus_dex": "yes",
+      "two_dex_max": "no"
+    },
+    "leather": {
+      "base": 11,
+      "plus_dex": "yes",
+      "two_dex_max": "no"
+    },
+    "studded leather:": {
+      "base": 12,
+      "plus_dex": "yes",
+      "two_dex_max": "no"
+    },
+    "hide": {
+      "base": 12,
+      "plus_dex": "yes",
+      "two_dex_max": "yes"
+    },
+    "chain shirt": {
+      "base": 13,
+      "plus_dex": "yes",
+      "two_dex_max": "yes"
+    },
+    "scale mail": {
+      "base": 14,
+      "plus_dex": "yes",
+      "two_dex_max": "yes"
+    },
+    "breastplate": {
+      "base": 14,
+      "plus_dex": "yes",
+      "two_dex_max": "yes"
+    },
+    "half plate": {
+      "base": 15,
+      "plus_dex": "yes",
+      "two_dex_max": "yes"
+    },
+    "ring mail": {
+      "base": 14,
+      "plus_dex": "no",
+      "two_dex_max": "no"
+    },
+    "chain mail": {
+      "base": 16,
+      "plus_dex": "no",
+      "two_dex_max": "no"
+    },
+    "splint": {
+      "base": 17,
+      "plus_dex": "no",
+      "two_dex_max": "no"
+    },
+    "plate": {
+      "base": 18,
+      "plus_dex": "no",
+      "two_dex_max": "no"
+    },
+    "shield": {
+      "base": 2,
+      "plus_dex": "no",
+      "two_dex_max": "no"
+    }
   },
   "weapon": {
     "simple": {
