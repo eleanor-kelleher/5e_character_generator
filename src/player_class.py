@@ -8,6 +8,7 @@ class PlayerClass:
         self.all_items = all_items
         self.st_checkboxes = st_checkboxes
         self.class_name = class_name
+        print("Class: " + self.class_name)
         self.level = 1
         self.proficiency_bonus = 2
         self.hit_dice = class_data["hd"]
@@ -18,6 +19,7 @@ class PlayerClass:
         self.skill_number = class_data["skill number"]
         self.skills = class_data["skills"]
         self.equipment = self.select_item_option(class_data["equipment"])
+        self.weapons = self.get_weapon_dicts()
         self.subclass = (
             random.choice(list(class_data["subclass"]))
             if class_data["subclass"]
@@ -62,25 +64,35 @@ class PlayerClass:
             item = utils.split_on_slash(item)
             item = item.replace("artisan", random.choice(self.all_items["artisan"]))
             item = item.replace("instrument", random.choice(self.all_items["artisan"]))
-            simple_melee = "simple melee" in item
-            while simple_melee:
+            while "simple melee" in item:
                 simple_weapon_choice = random.choice(list(self.all_items["weapon"]["simple"].items()))
                 if self.all_items["weapon"]["simple"][simple_weapon_choice[0]]["melee"] == "yes":
                     item = item.replace("simple melee", simple_weapon_choice[0], 1)
-                    simple_melee = "simple melee" in item
-            martial_melee = "simple martial" in item
-            while martial_melee:
-                martial_weapon_choice = random.choice(self.all_items["weapon"]["martial"])
+            while "martial melee" in item:
+                martial_weapon_choice = random.choice(list(self.all_items["weapon"]["martial"].items()))
                 if self.all_items["weapon"]["martial"][martial_weapon_choice[0]]["melee"] == "yes":
                     item = item.replace("martial melee", martial_weapon_choice[0], 1)
-                    martial_melee = "simple martial" in item
-            simple = "simple" in item
-            while simple:
+            while "simple" in item:
                 item = item.replace("simple", random.choice(list(self.all_items["weapon"]["simple"])), 1)
-                simple = "simple" in item
-            martial = "martial" in item
-            while martial:
+            while "martial" in item:
                 item = item.replace("martial", random.choice(list(self.all_items["weapon"]["martial"])), 1)
-                martial = "martial" in item
-            final_list.append(item)
+            final_item = item.split(", ")
+            final_list = final_list + final_item
         return final_list
+
+    def get_weapon_dicts(self):
+        weapons = []
+        for item in self.equipment:
+            if item[-1] == ")":
+                item = item[:len(item) - 4]
+            if item in self.all_items["weapon"]["simple"]:
+                weapon = self.all_items["weapon"]["simple"][item]
+                weapon["name"] = item
+                weapons.append(weapon)
+            elif item in self.all_items["weapon"]["martial"]:
+                weapon = self.all_items["weapon"]["martial"][item]
+                weapon["name"] = item
+                weapons.append(weapon)
+        return weapons
+
+

@@ -12,9 +12,7 @@ from race import Race
 from background import Background
 from player_class import PlayerClass
 
-# TODO 0: Finish equipment list
-# TODO 1: Save weapon dicts outside of equipment
-# TODO 2: Add everything to final data dict
+# TODO 2.5: Improve logging
 # TODO 3: Fix cleric subclasses
 
 
@@ -27,7 +25,7 @@ class CharacterSheet:
         self.clss = PlayerClass(
             self.sheet_stuff["saving_throws"],
             utils.load_json(self.conf["ITEM_PATH"]),
-            *utils.select_specific_from_json(self.conf["PLAYER_CLASS_PATH"], "Ranger"),
+            *utils.select_specific_from_json(self.conf["PLAYER_CLASS_PATH"], "Fighter"),
         )
         self.stats = sheet_maths.generate_stats()
         self.race = Race(*utils.select_random_from_json(self.conf["RACES_PATH"]))
@@ -36,9 +34,8 @@ class CharacterSheet:
         self.saves = sheet_maths.generate_saves(
             self.mods, self.clss.saves, self.clss.proficiency_bonus
         )
+        self.weapons = self.finalise_weapons()
         self.bg = Background(*utils.select_random_from_json(self.conf["BACKGROUND_PATH"]))
-        print(self.clss.class_name, " ", self.race.race_name, " ", self.bg.bg_name)
-
         self.final_languages = self.select_languages()
 
         self.final_profs = self.select_profs()
@@ -65,7 +62,7 @@ class CharacterSheet:
         for stat_name in self.stats:
             if stat_name in self.race.mods:
                 self.stats[stat_name] = (
-                    self.stats[stat_name] + self.race.mods[stat_name]
+                        self.stats[stat_name] + self.race.mods[stat_name]
                 )
 
     def select_languages(self):
@@ -113,6 +110,31 @@ class CharacterSheet:
             self.clss.proficiencies + self.bg.proficiencies + self.race.proficiencies
         )
 
+    def finalise_weapons(self):
+        final_weapon_dict = {"AttacksSpellcasting": ""}
+        for i, weapon in enumerate(self.clss.weapons):
+            if self.clss.weapons[i]["melee"] == "no" or \
+                    (self.clss.weapons[i]["finesse"] == "yes" and
+                     self.mods["DEXmod"] >= self.mods["STRmod"]):
+                str_or_dex = "DEXmod"
+            else:
+                str_or_dex = "STRmod"
+            if i < 3:
+                num = str(i + 1)
+                if i == 0:
+                    final_weapon_dict["Wpn Name"] = self.clss.weapons[i]["name"]
+                else:
+                    final_weapon_dict["Wpn Name " + num] = self.clss.weapons[i]["name"]
+                final_weapon_dict[f"Wpn{num} AtkBonus"] = f"+{self.clss.proficiency_bonus + self.mods[str_or_dex]}"
+                final_weapon_dict[f"Wpn{num} Damage"] = f"{self.clss.weapons[i]['dmg']}+{self.mods[str_or_dex]}"
+            else:
+                final_weapon_dict["AttacksSpellcasting"] = \
+                    f"{final_weapon_dict['AttacksSpellcasting']}{self.clss.weapons[i]['name']} " \
+                    f"+{self.clss.proficiency_bonus + self.mods[str_or_dex]} " \
+                    f"{self.clss.weapons[i]['dmg']}+{self.mods[str_or_dex]}\n"
+
+        return final_weapon_dict
+
     def create_character_data_dict(self):
         data = {
             "CharacterName": names.get_first_name(),
@@ -125,7 +147,7 @@ class CharacterSheet:
             "Equipment": ", ".join(self.bg.equipment + self.clss.equipment),
             "ProficienciesLang": self.final_languages + "\n\n" + self.final_profs,
             "Features and Traits": utils.dict_to_string(self.race.features)
-            + utils.dict_to_string(self.clss.features),
+                                   + utils.dict_to_string(self.clss.features),
         }
         # Checking proficient skill boxes
         for skill in self.final_skills:
@@ -146,6 +168,7 @@ class CharacterSheet:
         data.update(self.race.race_to_dict())
         data.update(self.bg.bg_to_dict())
         data.update(self.clss.class_to_dict())
+        data.update(self.weapons)
         return data
 
     def write_fillable_pdf(self):

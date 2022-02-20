@@ -50,7 +50,8 @@
       "club": {
         "dmg": "1d4",
         "melee": "yes",
-        "type": "bludgeoning"
+        "type": "bludgeoning",
+        "finesse": "no"
       },
       "dagger": {
         "dmg": "1d4",
@@ -62,46 +63,54 @@
       "greatclub": {
         "dmg": "1d8",
         "melee": "yes",
-        "type": "bludgeoning"
+        "type": "bludgeoning",
+        "finesse": "no"
       },
       "handaxe": {
         "dmg": "1d6",
         "melee": "yes",
         "type": "slashing",
+        "finesse": "no",
         "thrown": "20/60"
       },
       "javelin": {
         "dmg": "1d6",
         "melee": "yes",
         "type": "piercing",
+        "finesse": "no",
         "thrown": "30/120"
       },
       "light hammer": {
         "dmg": "1d4",
         "melee": "yes",
         "type": "bludgeoning",
+        "finesse": "no",
         "thrown": "20/60"
       },
       "mace": {
         "dmg": "1d6",
         "melee": "yes",
-        "type": "bludgeoning"
+        "type": "bludgeoning",
+        "finesse": "no"
       },
       "quarterstaff": {
         "dmg": "1d6",
         "melee": "yes",
         "type": "bludgeoning",
+        "finesse": "no",
         "versatile": "1d8"
       },
       "sickle": {
         "dmg": "1d4",
         "melee": "yes",
-        "type": "slashing"
+        "type": "slashing",
+        "finesse": "no"
       },
       "spear": {
         "dmg": "1d6",
         "melee": "yes",
         "type": "piercing",
+        "finesse": "no",
         "thrown": "20/60",
         "versatile": "1d8"
       },
@@ -109,24 +118,28 @@
         "dmg": "1d8",
         "melee": "no",
         "type": "piercing",
+        "finesse": "no",
         "range": "80/320"
       },
       "dart": {
         "dmg": "1d4",
         "melee": "no",
         "type": "piercing",
+        "finesse": "yes",
         "thrown": "20/60"
       },
       "shortbow": {
         "dmg": "1d6",
         "melee": "no",
         "type": "piercing",
+        "finesse": "no",
         "thrown": "80/320"
       },
       "sling": {
         "dmg": "1d4",
         "melee": "no",
         "type": "bludgeoning",
+        "finesse": "no",
         "thrown": "30/120"
       }
     },
@@ -136,58 +149,69 @@
         "dmg": "1d8",
         "melee": "yes",
         "type": "slashing",
+        "finesse": "no",
         "versatile": "1d10"
       },
       "flail": {
         "dmg": "1d8",
         "melee": "yes",
-        "type": "bludgeoning"
+        "type": "bludgeoning",
+        "finesse": "no"
       },
       "glaive": {
         "dmg": "1d10",
         "melee": "yes",
-        "type": "slashing"
+        "type": "slashing",
+        "finesse": "no"
       },
       "greataxe": {
         "dmg": "1d12",
         "melee": "yes",
-        "type": "slashing"
+        "type": "slashing",
+        "finesse": "no"
       },
       "greatsword": {
         "dmg": "2d6",
         "melee": "yes",
-        "type": "slashing"
+        "type": "slashing",
+        "finesse": "no"
       },
       "halberd": {
         "dmg": "1d10",
         "melee": "yes",
-        "type": "slashing"
+        "type": "slashing",
+        "finesse": "no"
       },
       "lance": {
         "dmg": "1d12",
         "melee": "yes",
-        "type": "piercing"
+        "type": "piercing",
+        "finesse": "no"
       },
       "longsword": {
         "dmg": "1d8",
         "melee": "yes",
         "type": "slashing",
+        "finesse": "no",
         "versatile": "1d10"
       },
       "maul": {
         "dmg": "2d6",
         "melee": "yes",
-        "type": "bludgeoning"
+        "type": "bludgeoning",
+        "finesse": "no"
       },
       "morningstar": {
         "dmg": "1d8",
         "melee": "yes",
-        "type": "piercing"
+        "type": "piercing",
+        "finesse": "no"
       },
       "pike": {
         "dmg": "1d10",
         "melee": "yes",
-        "type": "piercing"
+        "type": "piercing",
+        "finesse": "no"
       },
       "rapier": {
         "dmg": "1d8",
@@ -211,18 +235,21 @@
         "dmg": "1d6",
         "melee": "yes",
         "type": "piercing",
+        "finesse": "no",
         "thrown": "20/60",
         "versatile": "1d8"
       },
       "war pick": {
         "dmg": "1d10",
         "melee": "yes",
-        "type": "bludgeoning"
+        "type": "bludgeoning",
+        "finesse": "no"
       },
       "warhammer": {
         "dmg": "1d8",
         "melee": "yes",
         "type": "bludgeoning",
+        "finesse": "no",
         "versatile": "1d10"
       },
       "whip": {
@@ -235,29 +262,34 @@
         "dmg": "1",
         "melee": "no",
         "type": "piercing",
+        "finesse": "no",
         "range": "25/100"
       },
       "hand crossbow": {
         "dmg": "1d6",
         "melee": "no",
         "type": "piercing",
+        "finesse": "no",
         "range": "30/120"
       },
       "heavy crossbow": {
         "dmg": "1d10",
         "melee": "no",
         "type": "piercing",
+        "finesse": "no",
         "range": "100/400"
       },
       "longbow": {
         "dmg": "1d8",
         "melee": "no",
         "type": "piercing",
+        "finesse": "no",
         "range": "150/600"
       },
       "net": {
         "dmg": "grapple",
         "melee": "no",
+        "finesse": "no",
         "type": "DC10 STR"
       }
     }

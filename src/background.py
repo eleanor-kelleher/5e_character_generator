@@ -6,6 +6,7 @@ import utils
 class Background:
     def __init__(self, bg_name: str, bg_data: dict):
         self.bg_name = bg_name
+        print("Background: " + self.bg_name)
         self.skills = bg_data["skills"]
         self.extra_languages = bg_data["languages"]
         self.equipment = self.finalise_equipment_list(bg_data["equipment"])

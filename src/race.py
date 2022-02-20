@@ -6,6 +6,7 @@ from src import utils
 class Race:
     def __init__(self, race_name: str, race_data: dict):
         self.race_name = race_name
+        print("Race: " + self.race_name)
         self.mods = race_data["mods"]
         self.speed = race_data["speed"]
         self.languages = race_data["languages"]
