@@ -4,7 +4,9 @@ from src import utils
 
 
 class PlayerClass:
-    def __init__(self, st_checkboxes: dict, all_items: dict, class_name: str, class_data: dict):
+    def __init__(
+        self, st_checkboxes: dict, all_items: dict, class_name: str, class_data: dict
+    ):
         self.all_items = all_items
         self.st_checkboxes = st_checkboxes
         self.class_name = class_name
@@ -65,17 +67,35 @@ class PlayerClass:
             item = item.replace("artisan", random.choice(self.all_items["artisan"]))
             item = item.replace("instrument", random.choice(self.all_items["artisan"]))
             while "simple melee" in item:
-                simple_weapon_choice = random.choice(list(self.all_items["weapon"]["simple"].items()))
-                if self.all_items["weapon"]["simple"][simple_weapon_choice[0]]["melee"] == "yes":
+                simple_weapon_choice = random.choice(
+                    list(self.all_items["weapon"]["simple"].items())
+                )
+                if (
+                    self.all_items["weapon"]["simple"][simple_weapon_choice[0]]["melee"]
+                    == "yes"
+                ):
                     item = item.replace("simple melee", simple_weapon_choice[0], 1)
             while "martial melee" in item:
-                martial_weapon_choice = random.choice(list(self.all_items["weapon"]["martial"].items()))
-                if self.all_items["weapon"]["martial"][martial_weapon_choice[0]]["melee"] == "yes":
+                martial_weapon_choice = random.choice(
+                    list(self.all_items["weapon"]["martial"].items())
+                )
+                if (
+                    self.all_items["weapon"]["martial"][martial_weapon_choice[0]][
+                        "melee"
+                    ]
+                    == "yes"
+                ):
                     item = item.replace("martial melee", martial_weapon_choice[0], 1)
             while "simple" in item:
-                item = item.replace("simple", random.choice(list(self.all_items["weapon"]["simple"])), 1)
+                item = item.replace(
+                    "simple", random.choice(list(self.all_items["weapon"]["simple"])), 1
+                )
             while "martial" in item:
-                item = item.replace("martial", random.choice(list(self.all_items["weapon"]["martial"])), 1)
+                item = item.replace(
+                    "martial",
+                    random.choice(list(self.all_items["weapon"]["martial"])),
+                    1,
+                )
             final_item = item.split(", ")
             final_list = final_list + final_item
         return final_list
@@ -84,7 +104,7 @@ class PlayerClass:
         weapons = []
         for item in self.equipment:
             if item[-1] == ")":
-                item = item[:len(item) - 4]
+                item = item[: len(item) - 4]
             if item in self.all_items["weapon"]["simple"]:
                 weapon = self.all_items["weapon"]["simple"][item]
                 weapon["name"] = item
@@ -94,5 +114,3 @@ class PlayerClass:
                 weapon["name"] = item
                 weapons.append(weapon)
         return weapons
-
-

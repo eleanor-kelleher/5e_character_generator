@@ -12,6 +12,7 @@ from race import Race
 from background import Background
 from player_class import PlayerClass
 
+# TODO 2: Add AC
 # TODO 2.5: Improve logging
 # TODO 3: Fix cleric subclasses
 
@@ -35,11 +36,18 @@ class CharacterSheet:
             self.mods, self.clss.saves, self.clss.proficiency_bonus
         )
         self.weapons = self.finalise_weapons()
-        self.bg = Background(*utils.select_random_from_json(self.conf["BACKGROUND_PATH"]))
+        self.bg = Background(
+            *utils.select_random_from_json(self.conf["BACKGROUND_PATH"])
+        )
         self.final_languages = self.select_languages()
 
         self.final_profs = self.select_profs()
         self.final_skills = self.select_skills()
+
+        if "Perception" in self.final_skills:
+            self.pp = self.mods["WISmod"] + self.clss.proficiency_bonus + 10
+        else:
+            self.pp = self.mods["WISmod"] + 10
 
     def finalise_stats(self):
         # Resorting the important stats based on which class was selected
@@ -62,7 +70,7 @@ class CharacterSheet:
         for stat_name in self.stats:
             if stat_name in self.race.mods:
                 self.stats[stat_name] = (
-                        self.stats[stat_name] + self.race.mods[stat_name]
+                    self.stats[stat_name] + self.race.mods[stat_name]
                 )
 
     def select_languages(self):
@@ -113,9 +121,10 @@ class CharacterSheet:
     def finalise_weapons(self):
         final_weapon_dict = {"AttacksSpellcasting": ""}
         for i, weapon in enumerate(self.clss.weapons):
-            if self.clss.weapons[i]["melee"] == "no" or \
-                    (self.clss.weapons[i]["finesse"] == "yes" and
-                     self.mods["DEXmod"] >= self.mods["STRmod"]):
+            if self.clss.weapons[i]["melee"] == "no" or (
+                self.clss.weapons[i]["finesse"] == "yes"
+                and self.mods["DEXmod"] >= self.mods["STRmod"]
+            ):
                 str_or_dex = "DEXmod"
             else:
                 str_or_dex = "STRmod"
@@ -125,13 +134,18 @@ class CharacterSheet:
                     final_weapon_dict["Wpn Name"] = self.clss.weapons[i]["name"]
                 else:
                     final_weapon_dict["Wpn Name " + num] = self.clss.weapons[i]["name"]
-                final_weapon_dict[f"Wpn{num} AtkBonus"] = f"+{self.clss.proficiency_bonus + self.mods[str_or_dex]}"
-                final_weapon_dict[f"Wpn{num} Damage"] = f"{self.clss.weapons[i]['dmg']}+{self.mods[str_or_dex]}"
+                final_weapon_dict[
+                    f"Wpn{num} AtkBonus"
+                ] = f"+{self.clss.proficiency_bonus + self.mods[str_or_dex]}"
+                final_weapon_dict[
+                    f"Wpn{num} Damage"
+                ] = f"{self.clss.weapons[i]['dmg']}+{self.mods[str_or_dex]}"
             else:
-                final_weapon_dict["AttacksSpellcasting"] = \
-                    f"{final_weapon_dict['AttacksSpellcasting']}{self.clss.weapons[i]['name']} " \
-                    f"+{self.clss.proficiency_bonus + self.mods[str_or_dex]} " \
+                final_weapon_dict["AttacksSpellcasting"] = (
+                    f"{final_weapon_dict['AttacksSpellcasting']}{self.clss.weapons[i]['name']} "
+                    f"+{self.clss.proficiency_bonus + self.mods[str_or_dex]} "
                     f"{self.clss.weapons[i]['dmg']}+{self.mods[str_or_dex]}\n"
+                )
 
         return final_weapon_dict
 
@@ -147,7 +161,8 @@ class CharacterSheet:
             "Equipment": ", ".join(self.bg.equipment + self.clss.equipment),
             "ProficienciesLang": self.final_languages + "\n\n" + self.final_profs,
             "Features and Traits": utils.dict_to_string(self.race.features)
-                                   + utils.dict_to_string(self.clss.features),
+            + utils.dict_to_string(self.clss.features),
+            "Passive": str(self.pp),
         }
         # Checking proficient skill boxes
         for skill in self.final_skills:
@@ -162,6 +177,7 @@ class CharacterSheet:
                 data[skill] = sheet_maths.plus_or_minus(
                     self.mods[self.sheet_stuff["skills"][skill]["mod"]]
                 )
+
         data.update(self.stats)
         data.update(sheet_maths.plus_or_minus_dict(self.mods))
         data.update(sheet_maths.plus_or_minus_dict(self.saves))
@@ -182,7 +198,10 @@ class CharacterSheet:
                 if annotation[self.conf["ANNOT_KEY_field"]]:
                     key = annotation[self.conf["ANNOT_KEY_field"]][1:-1].strip()
                     if key in data_dict.keys():
-                        if annotation[self.conf["ANNOT_FORM_type"]] == self.conf["ANNOT_FORM_button"]:
+                        if (
+                            annotation[self.conf["ANNOT_FORM_type"]]
+                            == self.conf["ANNOT_FORM_button"]
+                        ):
                             # button field i.e. a checkbox
                             annotation.update(
                                 pdfrw.PdfDict(
@@ -190,16 +209,21 @@ class CharacterSheet:
                                     AS=pdfrw.PdfName(data_dict[key]),
                                 )
                             )
-                        elif annotation[self.conf["ANNOT_FORM_type"]] == self.conf["ANNOT_FORM_text"]:
+                        elif (
+                            annotation[self.conf["ANNOT_FORM_type"]]
+                            == self.conf["ANNOT_FORM_text"]
+                        ):
                             annotation.update(
                                 pdfrw.PdfDict(V="{}".format(data_dict[key]))
                             )
         template_pdf.Root.AcroForm.update(
             pdfrw.PdfDict(NeedAppearances=pdfrw.PdfObject("true"))
         )
-        new_pdf_name = f"{data_dict['CharacterName']}_{data_dict['Race'].replace(' ', '-')}" \
-                       f"_{data_dict['ClassLevel'][:-3].replace(' ', '-')}" \
-                       f"_{data_dict['Background'].replace(' ', '-')}"
+        new_pdf_name = (
+            f"{data_dict['CharacterName']}_{data_dict['Race'].replace(' ', '-')}"
+            f"_{data_dict['ClassLevel'][:-3].replace(' ', '-')}"
+            f"_{data_dict['Background'].replace(' ', '-')}"
+        )
         pdfrw.PdfWriter().write(
             f"pdfs/{new_pdf_name}.pdf",
             template_pdf,
