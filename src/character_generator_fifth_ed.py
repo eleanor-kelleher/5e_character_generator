@@ -174,7 +174,7 @@ class CharacterSheet:
 
         return 10 + self.mods["DEXmod"]
 
-    def create_character_data_dict(self):
+    def create_character_data_dict(self, player_name: str = ""):
         data = {
             "CharacterName": names.get_first_name(),
             "XP": "0",
@@ -190,6 +190,10 @@ class CharacterSheet:
             "Passive": str(self.pp),
             "AC": self.ac,
         }
+
+        if player_name:
+            data["PlayerName"] = player_name
+
         # Checking proficient skill boxes
         for skill in self.final_skills:
             data[self.sheet_stuff["skills"][skill]["checkbox"]] = "Yes"
@@ -213,10 +217,8 @@ class CharacterSheet:
         data.update(self.weapons)
         return data
 
-    def write_fillable_pdf(self):
+    def write_fillable_pdf(self, data_dict: dict):
         template_pdf = pdfrw.PdfReader(self.conf["BLANK_CHAR_SHEET"])
-
-        data_dict = self.create_character_data_dict()
 
         annotations = template_pdf.pages[0][self.conf["ANNOT_KEY"]]
         for annotation in annotations:
@@ -246,17 +248,12 @@ class CharacterSheet:
             pdfrw.PdfDict(NeedAppearances=pdfrw.PdfObject("true"))
         )
         new_pdf_name = (
-            f"{data_dict['CharacterName']}_{data_dict['Race'].replace(' ', '-')}"
+            f"pdfs/{data_dict['CharacterName']}_{data_dict['Race'].replace(' ', '-')}"
             f"_{data_dict['ClassLevel'][:-3].replace(' ', '-')}"
-            f"_{data_dict['Background'].replace(' ', '-')}"
+            f"_{data_dict['Background'].replace(' ', '-')}.pdf"
         )
         pdfrw.PdfWriter().write(
-            f"pdfs/{new_pdf_name}.pdf",
+            new_pdf_name,
             template_pdf,
         )
-
-
-if __name__ == "__main__":
-    for i in range(5):
-        pc = CharacterSheet()
-        pc.write_fillable_pdf()
+        return new_pdf_name
